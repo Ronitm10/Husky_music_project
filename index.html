@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Música para todos - Spotify</title>
-  <link rel="icon" href="imagens/favicon.png">
+  <title>Husky Music!</title>
+  <link rel="icon" href="images/favicon.png">
 
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="customstyle.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -21,94 +21,81 @@
 
 <body>
 
-  <nav class="navbar navbar-fixed-top navbar-inverse navbar-transparente">
-    <!--container-->
+  <nav class="navbar navbar-fixed-top navbar-inverse navbar-transparent">
+
     <div class="container">
-
-      <!--header-->
       <div class="navbar-header">
-
-        <!--botao toggle-->
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barra-navegacao">
-          <span class="sr-only">alternar navegação</span>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-bar">
+          <span class="sr-only">alternate navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <!--/botao toggle-->
-
         <a href="index.html" class="navbar-brand">
-          <span class="img-logo">Spotify</span>
+          
+          <div class="img-logo"></div> 
         </a>
 
       </div>
-      <!--/header-->
-
-      <!--navbar-->
-      <div class="collapse navbar-collapse" id="barra-navegacao">
+      
+      <div class="collapse navbar-collapse" id="nav-bar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="">Premium</a></li>
-          <li><a href="">Ajuda</a></li>
-          <li><a href="">Baixar</a></li>
+          <li><a href="">News</a></li>
+          <li><a href="">Artists</a></li>
+          <li><a href="">About</a></li>
           <li class="divisor" role="separator"></li>
-          <li><a href="">Inscrever-se</a></li>
-          <li><a href="">Entrar</a></li>
+          <li><a href="">Register</a></li>
+          <li><a href="">Login</a></li>
         </ul>
       </div>
-      <!--/navbar-->
 
-      <!--/container-->
     </div>
   </nav>
 
-  <div class="capa">
-    <div class="texto-capa">
-      <h1>Música pra todos</h1>
-      <a href="#" class="btn btn-custom btn-lg btn-roxo">Aproveite o Spotify Free</a>
-      <a href="#" class="btn btn-custom btn-lg btn-branco">Obter Spotify Premium</a>
+  <div class="cap">
+    <div class="cap-text">
+      <h1>Music For Huskies!</h1>
+      <a href="#" class="btn btn-custom btn-lg btn-free">Try HuskyMusic Free</a>
+      <a href="#" class="btn btn-custom btn-lg btn-prem">Get HuskyMusic Premium</a>
     </div>
   </div>
 
-  <!--Conteudos-->
-  <section id="servicos">
+  <section id="services">
     <div class="container">
       <div class="row">
 
-        <!--album-->
         <div class="col-md-6">
 
-          <div class="row albuns">
+          <div class="row albums">
 
             <div class="col-md-6">
-              <img src="imagens/img1.jpg" class="img-responsive">
+              <img src="images/img1.jpg" class="img-responsive">
             </div>
 
             <div class="col-md-6">
-              <img src="imagens/img2.jpg" class="img-responsive">
+              <img src="images/img2.jpg" class="img-responsive">
             </div>
 
-          </div><!-- /row-1 -->
+          </div>
 
-          <div class="row albuns">
+          <div class="row albums">
 
             <div class="col-md-6">
-              <img src="imagens/img3.jpg" class="img-responsive">
+              <img src="images/img3.jpg" class="img-responsive">
             </div>
 
             <div class="col-md-6">
-              <img src="imagens/img4.jpg" class="img-responsive">
+              <img src="images/img4.jpg" class="img-responsive">
             </div>
 
-          </div><!-- /row-2 -->
+          </div>
 
-        </div><!-- /album -->
-
-        <!--servico-->
+        </div>
 
         <div class="col-md-6">
-          <h2>O que o Spotify tem?</h2>
+          <h2>What does HuskyMusic have??</h2>
 
-          <h3>Músicas</h3>
+          <h3>Music</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
             officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
@@ -116,37 +103,36 @@
           </p>
 
 
-          <h3>Playlist</h3>
+          <h3>Playlists</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
             officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
             rerum, saepe nam aspernatur necessitatibus!
           </p>
 
-          <h3>Novos lançamentos</h3>
+          <h3>Latest Releases</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
             officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
             rerum, saepe nam aspernatur necessitatibus!
           </p>
 
-        </div><!-- /servico -->
+        </div>
 
-      </div><!-- /row -->
+      </div>
 
-    </div><!-- /container -->
+    </div>
 
   </section>
 
-  <section id="recursos">
+  <section id="resources">
     <div class="container">
       <div class="row">
 
         <div class="col-md-4">
-          conteudo 1
-          <h2>Fácil</h2>
+          <h2>Easy to Use</h2>
 
-          <h3>Buscar</h3>
+          <h3>Search</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
             officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
@@ -154,14 +140,14 @@
           </p>
 
 
-          <h3>Navegar</h3>
+          <h3>Navigate</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
             officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
             rerum, saepe nam aspernatur necessitatibus!
           </p>
 
-          <h3>Descobrir</h3>
+          <h3>Discover</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
             officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
@@ -169,28 +155,26 @@
           </p>
         </div>
 
-        <!-- imagens recursos -->
         <div class="col-md-8">
-          <div class="row rotacao">
+          <div class="row rotation">
 
             <div class="col-md-6">
-              <img src="imagens/iphone1.png" class="img-responsive">
+              <img src="images/iphone1.png" class="img-responsive">
             </div>
 
             <div class="col-md-6">
-              <img src="imagens/iphone2.png" class="img-responsive">
+              <img src="images/iphone2.png" class="img-responsive">
             </div>
 
-          </div><!-- /row imagens -->
+          </div>
 
-        </div><!-- /col-8 -->
+        </div>
 
-      </div><!-- /row -->
-    </div><!-- /container -->
+      </div>
+    </div>
   </section>
 
-  <!-- Rodapé -->
-  <footer id="rodape">
+  <footer id="baseboard">
     <div class="container">
 
       <div class="row">
@@ -202,40 +186,40 @@
         <div class="col-md-2">
           <h4>company</h4>
           <ul class="nav">
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Empregos</a></li>
-            <li><a href="#">Imprensa</a></li>
-            <li><a href="#">Novidades</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">News</a></li>
           </ul>
         </div>
 
         <div class="col-md-2">
-          <h4>comunidades</h4>
+          <h4>communities</h4>
           <ul class="nav">
-              <li><a href="#">Artista</a></li>
-              <li><a href="#">Desenvolvedores</a></li>
-              <li><a href="#">Marcas</a></li>
+              <li><a href="#">Artists</a></li>
+              <li><a href="#">Developers</a></li>
+              <li><a href="#">Brands</a></li>
             </ul>
         </div>
 
         <div class="col-md-2">
-          <h4>links úteis</h4>
+          <h4>useful links</h4>
           <ul class="nav">
-              <li><a href="#">Ajuda</a></li>
-              <li><a href="#">Presentes</a></li>
-              <li><a href="#">Player da Web</a></li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Gifts</a></li>
+              <li><a href="#">Web Player</a></li>
             </ul>
         </div>
 
         <div class="col-md-4">
           <ul class="nav">
-            <li class="item-rede-social"><a href=""><img src="imagens/facebook.png"></a></li>
-            <li class="item-rede-social"><a href=""><img src="imagens/twitter.png"></a></li>
-            <li class="item-rede-social"  ><a href=""><img src="imagens/instagram.png"></a></li>
+            <li class="item-social"><a href=""><img src="images/facebook.png"></a></li>
+            <li class="item-social"><a href=""><img src="images/twitter.png"></a></li>
+            <li class="item-social"  ><a href=""><img src="images/instagram.png"></a></li>
           </ul>
         </div>
 
-      </div><!-- /row -->
+      </div>
 
     </div>
   </footer>
