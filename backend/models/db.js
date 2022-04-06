@@ -21,5 +21,5 @@ mongoose.connection.on('connected', function () {
     }); 
   }); 
   
-const Test = require('./Test')
+require('./Test')
 
