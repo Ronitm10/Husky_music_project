@@ -1,5 +1,6 @@
 # Husky_music_project
 
-Web Design Project
-
-This is First Commit
+# Run instructions: 
+- cd into backend
+- `npm run build:ui`
+- `npm start` or `npm run dev` for dev mode
