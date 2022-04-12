@@ -1,0 +1,48 @@
+- Track
+  - ID
+  - Album -> Artist
+  - Data/Link to cloudinary
+  - Track name
+  - Track duration
+  - Album
+  - Play Count
+  - Like Count
+- Album
+  - Artist
+  - List of Tracks
+  - Album Name
+  - Release Year
+  - Total Run Duration
+  - Album Art
+  - Genre
+- Artist
+  - Name
+  - Bio -> picture description
+  - Albums
+  - Top Played Tracks
+  - User
+- Playlist
+  - Name
+  - Track List
+  - User
+- User
+  - Role (Listener, Artist, Admin)
+  - credentials
+  - Listener
+    - Liked Tracks
+    - Premium Or not
+    - PlayLists
+    - Liked Albums
+    - Track History
+    - Payment Info
+  - Artist
+    - Tracks
+    - Albums
+  - Admin
+    - no data
+    - Add Artists
+    - See stats(Total play count, Total number of users, artists,albums)
+- Navbar Home -> Albums -> Artists -> Playlists -> Search -> Profile
+
+/all  -> all objects
+/:id -> any object
