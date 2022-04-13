@@ -5,6 +5,6 @@ const artistSchema = new mongoose.Schema({
     data: String
 });
 
-const Test = mongoose.model('Artist', artistSchema);
+const Art = mongoose.model('Artist', artistSchema);
 
-module.exports = Test
+module.exports = Artist
