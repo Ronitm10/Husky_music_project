@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cloudinary": "^1.29.1",
     "config": "^3.3.7",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",

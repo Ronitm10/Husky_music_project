@@ -1,3 +1,5 @@
 {
-    "jwtSecret" : "SuperSecretToken"
+    "jwtSecret" : "SuperSecretToken",
+    "cloudinaryAPIkey" : "419895149144449",
+    "cloudinaryAPIsecret": "UNXWhLwS0or63-ejEcrWF_geCMU"
 }

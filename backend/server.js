@@ -4,7 +4,14 @@ const express = require('express');
 const db = require('./models/db');
 const authRouter = require('./controllers/auth');
 const userRouter = require('./controllers/usercontroller');
+const cloudinary = require('cloudinary').v2;
+const config = require('config');
 
+cloudinary.config({ 
+    cloud_name: 'husky-music', 
+    api_key: config.get('cloudinaryAPIkey'), 
+    api_secret: config.get('cloudinaryAPIsecret') 
+  });
 const app = express();
 
 app.use(cors());
