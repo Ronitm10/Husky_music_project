@@ -5,6 +5,7 @@ const cloudinary = require('cloudinary').v2;
 const auth = require('../middleware/auth');
 const multer = require('multer');
 var path = require('path');
+//Uploads will be labelled with their extension here
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')
@@ -24,6 +25,7 @@ trackRouter.post("/", upload.single('track'), async (req, res) => {
     if (!track || !track.mimetype.includes('audio')) return res.status(400).send({ error: "Invalid track/format" });
 
     try {
+        //Upload to cloudinary
         let upload_response = await cloudinary.uploader.upload(track.path,
             { resource_type: "video" });
 
