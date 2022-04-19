@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
 const trackSchema = new mongoose.Schema({
-    ID: String,
     //album -> Artist
     trackName: String,
     trackDuration: Number,
     album: String,
-    playCount: BigInt,
-    likeCount: BigInt
+    playCount: Number,
+    likeCount: Number,
+    trackUrl: String
 });
 
 const Track = mongoose.model('Track', trackSchema);
