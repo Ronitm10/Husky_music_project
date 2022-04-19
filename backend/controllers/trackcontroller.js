@@ -31,12 +31,14 @@ trackRouter.post("/", upload.single('track'), async (req, res) => {
         trackObj.trackUrl = upload_response.secure_url;
         trackObj.trackName = req.body.trackName;
         await trackObj.save();
-        return res.send(trackObj);
+
         // Remove files from server
         fs.unlink(req.file.path, (err) => {
             if (err) console.error('unlink failed', err);
             else console.log('upload complete. File deleted');
         });
+        return res.send(trackObj);
+
     }
 
     catch (err) {
