@@ -7,11 +7,8 @@ import Track from './Track';
 const artistSchema = new mongoose.Schema({
     name: String ,
     bio: String,
-
     album: Album,
-    //Waiting for track
-    topPlayedTracks: String,
-   
+    topPlayedTracks: [Track],
     user: User
 });
 
