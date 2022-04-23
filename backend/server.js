@@ -6,8 +6,9 @@ const testRouter = require('./controllers/testcontroller')
 const app = express();
 
 app.use(cors());
-
-app.use("/", testRouter)
+app.use(express.json({extended : false}));
+app.use("/", testRouter);
+app.use("/artist", require('./controllers/artistcontroller'));
 
 
 
