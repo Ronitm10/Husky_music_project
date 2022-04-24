@@ -5,6 +5,8 @@ const db = require('./models/db');
 const authRouter = require('./controllers/auth');
 const userRouter = require('./controllers/usercontroller');
 const trackRouter = require('./controllers/trackcontroller')
+const albumRouter = require('./controllers/albumcontroller')
+
 const cloudinary = require('cloudinary').v2;
 const config = require('config');
 
@@ -21,6 +23,7 @@ app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/tracks", trackRouter);
+app.use("/api/albums", albumRouter);
 
 
 
