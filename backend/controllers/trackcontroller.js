@@ -17,8 +17,6 @@ var storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 const fs = require('fs')
 
-
-
 trackRouter.post("/", upload.single('track'), async (req, res) => {
     console.log('form body', req.body.trackName);
     const track = req.file;
@@ -40,16 +38,101 @@ trackRouter.post("/", upload.single('track'), async (req, res) => {
             else console.log('upload complete. File deleted');
         });
         return res.send(trackObj);
-
     }
 
     catch (err) {
         console.error('Track upload failed', err);
     }
+})
+
+trackRouter.get("/getTracks", async (req, res) => {
+    Track.find({}, (err, data) => {
+        try {
+            if (!err) {
+                res.send(data);
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+})
+
+
+trackRouter.post('/create', (req, res) => {
+    try {
+        console.log(req.body.name)
+        const track = new Track({
+            trackName: req.body.trackName,
+            trackDuration: req.body.trackDuration,
+            album: req.body.album,
+            playCount: req.body.playCount,
+            trackUrl: req.body.trackUrl
+        })
+        track.save((err, data) => {
+            res.status(200).json({
+                code: 200,
+                message: 'Track creation successful',
+                create: data,
+            })
+        })
+
+    } catch (err) {
+        console.error('Could create Track', err)
+    }
+})
+
+
+
+trackRouter.delete('/delete', (req, res) => {
+    try {
+        const id = req.body.id
+
+        Track.findByIdAndRemove(id, (err, data) => {
+            if (!err) {
+                res.status(200).json({
+                    code: 200,
+                    message: 'Track deleted successfully',
+                    delUser: data,
+                })
+            }
+        })
+    } catch (err) {
+        console.error('Could not delete Track', err)
+    }
+})
 
 
 
 
+trackRouter.put('/update', (req, res) => {
+    try {
+        const id = req.body.id
+
+        Track.findByIdAndUpdate(
+            id,
+            {
+                $set: {
+                    trackName: req.body.trackName,
+                    trackDuration: req.body.trackDuration,
+                    playCount: req.body.playCount
+                },
+            },
+            (err, data) => {
+                if (!err) {
+                    res.status(200).json({
+                        code: 200,
+                        message: 'Track updated successfully',
+                        updateUsr: data,
+                    })
+                } else {
+                    console.log(err)
+                }
+            }
+        )
+    } catch (err) {
+        console.error('Could update Track', err)
+    }
 })
 
 module.exports = trackRouter
