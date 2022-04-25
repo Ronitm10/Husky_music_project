@@ -1,0 +1,13 @@
+.outer{
+    display: inline-block;
+    grid-template-columns: repeat(auto-fit, minmax(1rem, 15rem));
+    gap: 2rem;
+    justify-content: center
+}
+
+.title{
+    text-align: center;
+}
+.text{
+    text-align: center;
+}
