@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost:27017/Test')
+mongoose.connect('mongodb+srv://sahilm:Pass123@clusterassignment.yo70k.mongodb.net/assignment-crud')
 
 mongoose.connection.on('connected', function () {
     console.log('Mongoose default connection open' );
+   
+      
   }); 
     
   mongoose.connection.on('error',function (err) { 

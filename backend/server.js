@@ -18,12 +18,14 @@ cloudinary.config({
 const app = express();
 
 app.use(cors());
+
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/tracks", trackRouter);
 app.use("/api/albums", albumRouter);
+
 
 
 
