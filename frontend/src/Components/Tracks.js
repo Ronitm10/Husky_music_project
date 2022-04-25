@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from 'react-bootstrap'
+import NVbar from './NVbar'
 
 function Track() {
     const [trackList, setTrackList] = useState([])
@@ -18,27 +19,33 @@ function Track() {
     }, [])
 
     return (
-        <Table striped bordered hover variant="dark">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Album</th>
-                    <th>Duration</th>
-                </tr>
-            </thead>
-            <tbody>
-                {trackList.map((t) => {
-                    return (
-                        <tr>
-                            <td>{t.trackName}</td>
-                            <td>{t.album}</td>
-                            <td>{t.trackDuration}</td>
-                        </tr>
-                    )
-                }
-                )}
-            </tbody>
-        </Table>
+        <div>
+            <NVbar />
+            <Table striped bordered hover variant="dark">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th><i>TITLE</i></th>
+                        <th><i>ALBUM</i></th>
+                        <th><i>DURATION</i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {trackList.map((t, i) => {
+                        i = i + 1;
+                        return (
+                            <tr className='table_row'>
+                                <td>{i}</td>
+                                <td>{t.trackName}</td>
+                                <td>{t.album}</td>
+                                <td>{t.trackDuration}</td>
+                            </tr>
+                        )
+                    }
+                    )}
+                </tbody>
+            </Table>
+        </div>
     )
 }
 
