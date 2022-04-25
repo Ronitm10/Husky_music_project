@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "ddf338ba-e5d8-4dad-b1c8-77dcddf9b1a0",
+		"name": "Husky Music",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users and Auth",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI1ZGE4ZTc2ZDc0YWNmZjExNGVhY2ViIn0sImlhdCI6MTY1MDMwNTI1NSwiZXhwIjoxNjUwNjY1MjU1fQ.xaaAOOSKIpXydlIvFBbwSpVjm7DBCG7IOWFDEqHxtGk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Test5@test.com\",\r\n    \"password\": \"12343566\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Track",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "track",
+									"type": "file",
+									"src": "/C:/Users/skanda/Desktop/test.mp3"
+								},
+								{
+									"key": "trackName",
+									"value": "Testing.mp3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tracks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
