@@ -1,7 +1,8 @@
-import React from 'react'
-import { Nav, Navbar, Container } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Nav, Navbar, Container, InputGroup, FormControl, Button } from 'react-bootstrap'
 
 function NVbar() {
+    const [searchTerm, setSearchTerm] = useState("")
     return (
         <body>
             <Navbar bg="dark" variant="dark">
@@ -11,6 +12,10 @@ function NVbar() {
                         <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#features">Features</Nav.Link>
                         <Nav.Link href="#premium">Premium</Nav.Link>
+                        <InputGroup className="mb-3" onChange={(event) => { setSearchTerm(event.target.value) }}>
+                            <FormControl placeholder="Search Song" />
+                            <Button variant="outline-secondary" id="button-addon2"> Search </Button>
+                        </InputGroup>
                     </Nav>
                 </Container>
             </Navbar>
