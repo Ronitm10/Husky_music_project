@@ -7,28 +7,30 @@ import Login from './Components/Login/Login';
 import { Container } from 'react-bootstrap';
 import NVbar from './Components/NVbar';
 import useToken from './useToken';
+import Album from './Components/Album';
 
 function App() {
 
-  const { token, setToken } = useToken(); //Calling the custom hook for auth
+  // const { token, setToken } = useToken(); //Calling the custom hook for auth
 
-  console.log("token in app.js", token);
+  // console.log("token in app.js", token);
   //no token, no login
-  if (!token) {
-    return (
-      <div>
-        <NVbar />
-        <Login setToken={setToken} />
-      </div>
-    )
-  }
+  // if (!token) {
+  //   return (
+  //     <div>
+  //       <NVbar />
+  //       <Login setToken={setToken} />
+  //     </div>
+  //   )
+  // }
   return (
     <div>
       <NVbar />
       <Router>
         <Routes>
-          <Route path="/tracks" element={<Tracks />}></Route>
-          <Route path="/albums" element={<Albums />}></Route>
+          <Route path="/tracks" element={<Tracks />} />
+          <Route path="/albums" element={<Albums />} />
+          <Route path="/albums/:id" element={<Album />} />
         </Routes>
       </Router>
     </div>

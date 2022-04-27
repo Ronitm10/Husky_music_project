@@ -1,6 +1,7 @@
 const albumRouter = require('express').Router()
 const Album = require('../models/Album')
 var mongoose = require('mongoose')
+
 const { response } = require('express')
 var bodyParser = require('body-parser')
 
@@ -13,6 +14,18 @@ albumRouter.get('/getAll', async (req, res) => {
     }
     catch (err) {
         console.error("Error fetching albums: ", err);
+    }
+})
+
+albumRouter.get('/find/:id', async (req, res) => {
+    try {
+        console.log("Album id is", req.params.id);
+        const album = await Album.findById(idConvertor(req.params.id)).populate('tracks');
+        res.json(album)
+    }
+    catch (err) {
+        res.send(400)
+        console.error("Error getting album by ID: ", err);
     }
 })
 
