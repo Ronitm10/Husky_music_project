@@ -1,18 +1,18 @@
 const mongoose = require('mongoose')
-
-//import Album from './Album'
-//import User from './User'
-//import Track from './Track';
+const Schema = mongoose.Schema
 
 const artistSchema = new mongoose.Schema({
-    name: String,
-    bio: String,
-  // album: Album,
-   album: String,
-  //  topPlayedTracks: [Track],
-   topPlayedTracks: [String],
-   // user: User
-   user: String
+  name: String,
+  bio: String,
+  albums: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Album'
+  }],
+  topPlayedTracks: [String],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 
