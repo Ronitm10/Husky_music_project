@@ -3,7 +3,6 @@ import { Table } from 'react-bootstrap'
 import NVbar from './NVbar'
 import { InputGroup, FormControl, Button } from 'react-bootstrap'
 import Player from './Player/Player';
-import './Tracks.css'
 
 function Track() {
     const [trackList, setTrackList] = useState([])
@@ -65,7 +64,6 @@ function Track() {
 
     return (
         <div>
-            <NVbar />
             <InputGroup className="mb-3" onChange={(event) => { setSearchTerm(event.target.value) }}>
                 <FormControl placeholder="Search Song" />
                 <Button variant="outline-secondary" id="button-addon2"> Search </Button>
