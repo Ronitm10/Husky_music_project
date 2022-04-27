@@ -7,6 +7,7 @@ const userRouter = require('./controllers/usercontroller')
 const trackRouter = require('./controllers/trackcontroller')
 const albumRouter = require('./controllers/albumcontroller')
 const playlistRouter = require('./controllers/playlistcontroller')
+const artistRouter = require('./controllers/artistcontroller')
 
 const cloudinary = require('cloudinary').v2
 const config = require('config')
@@ -27,5 +28,6 @@ app.use('/api/users', userRouter)
 app.use('/api/tracks', trackRouter)
 app.use('/api/albums', albumRouter)
 app.use('/api/playlist', playlistRouter)
+app.use('/api/artists', artistRouter)
 
 module.exports = app

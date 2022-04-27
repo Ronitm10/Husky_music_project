@@ -6,88 +6,73 @@ var bodyParser = require('body-parser')
 
 const idConvertor = mongoose.Types.ObjectId
 //try {
-    albumRouter.get('/getAll', async (req, res) => {
-        Album.find({}, (err, data) => {
-            if (!err) {
-                res.send(data)
-            } else {
-                console.log(err)
-            }
-        })
-    })
-//} catch (err) {
-   // console.error('Could not get all Albums', err)
-//}
+albumRouter.get('/getAll', async (req, res) => {
+    try {
+        const albums = await Album.find({}).populate('tracks');
+        res.json(albums);
+    }
+    catch (err) {
+        console.error("Error fetching albums: ", err);
+    }
+})
 
-try {
-    albumRouter.post('/create', (req, res) => {
-        console.log(req.body.name)
+albumRouter.post('/create', async (req, res) => {
+    try {
         const album = new Album({
-            artist: req.body.album,
-            albumName: req.body.albumName,
-            releaseYear: req.body.releaseYear,
-            totalRunDuration: req.body.totalRunDuration,
-            albumArt: req.body.albumArt,
-            genre: req.body.genre,
+            artist: idConvertor(req.body.artist),
+            tracks: req.body.tracks.map(a => idConvertor(a)),
+            name: req.body.name,
+            albumArtURL: req.body.albumArt,
+            genre: req.body.genre
         })
-        album.save((err, data) => {
+        const response = await album.save();
+        res.json(response)
+    }
+    catch (err) {
+        console.error("Failed to create album", err);
+    }
+})
+
+albumRouter.delete('/deleteAlbum', (req, res) => {
+    const id = req.body.id
+
+    var idObj = idConvertor(id)
+
+    Album.findByIdAndRemove(id, (err, data) => {
+        if (!err) {
             res.status(200).json({
                 code: 200,
-                message: 'Album creation successful',
-                create: data,
+                message: 'Album deleted successfully',
+                delUser: data,
             })
-        })
+        }
     })
-} catch (err) {
-    console.error('Could create Albums', err)
-}
+})
 
-try {
-    albumRouter.delete('/deleteAlbum', (req, res) => {
-        const id = req.body.id
 
-        var idObj = idConvertor(id)
+albumRouter.put('/updateAlbum', (req, res) => {
+    const id = req.body.id
 
-        Album.findByIdAndRemove(id, (err, data) => {
+    Album.findByIdAndUpdate(
+        id,
+        {
+            $set: {
+                albumName: req.body.albumName,
+            },
+        },
+        (err, data) => {
             if (!err) {
                 res.status(200).json({
                     code: 200,
-                    message: 'Album deleted successfully',
-                    delUser: data,
+                    message: 'Album updated successfully',
+                    updateUsr: data,
                 })
+            } else {
+                console.log(err)
             }
-        })
-    })
-} catch (err) {
-    console.error('Could not delete Albums', err)
-}
+        }
+    )
+})
 
-try {
-    albumRouter.put('/updateAlbum', (req, res) => {
-        const id = req.body.id
-
-        Album.findByIdAndUpdate(
-            id,
-            {
-                $set: {
-                    albumName: req.body.albumName,
-                },
-            },
-            (err, data) => {
-                if (!err) {
-                    res.status(200).json({
-                        code: 200,
-                        message: 'Album updated successfully',
-                        updateUsr: data,
-                    })
-                } else {
-                    console.log(err)
-                }
-            }
-        )
-    })
-} catch (err) {
-    console.error('Could update Albums', err)
-}
 
 module.exports = albumRouter

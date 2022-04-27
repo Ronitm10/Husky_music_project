@@ -1,15 +1,17 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 const albumSchema = new mongoose.Schema({
-    Artist: String,
+    artist: {
+        type: Schema.Types.ObjectId,
+        ref: 'Artist'
+    },
     tracks: [{
         type: Schema.Types.ObjectId,
         ref: 'Track'
     }],
-    albumName: String,
+    name: String,
     releaseYear: Date,
-    totalRunDuration: Number,
-    albumArt: String,
+    albumArtURL: String,
     genre: String,
 });
 
