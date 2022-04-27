@@ -46,16 +46,7 @@ trackRouter.post("/", upload.single('track'), async (req, res) => {
 })
 
 trackRouter.get("/getTracks", async (req, res) => {
-    Track.find({}, (err, data) => {
-        try {
-            if (!err) {
-                res.send(data);
-            }
-        }
-        catch (err) {
-            console.log(err);
-        }
-    });
+
 })
 
 

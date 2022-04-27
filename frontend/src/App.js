@@ -24,7 +24,7 @@ function App() {
   }
   return (
     <div>
-      <NVbar></NVbar>
+      <NVbar />
       <Router>
         <Routes>
           <Route path="/tracks" element={<Tracks />}></Route>
