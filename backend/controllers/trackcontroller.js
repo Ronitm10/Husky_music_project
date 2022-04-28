@@ -5,6 +5,8 @@ const cloudinary = require('cloudinary').v2;
 const auth = require('../middleware/auth');
 const multer = require('multer');
 var path = require('path');
+const mongoose = require('mongoose')
+const idConverter = mongoose.Types.ObjectId
 //Uploads will be labelled with their extension here
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -17,7 +19,7 @@ var storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 const fs = require('fs')
 
-trackRouter.post("/", upload.single('track'), async (req, res) => {
+trackRouter.post("/create", upload.single('track'), async (req, res) => {
     console.log('form body', req.body.trackName);
     const track = req.file;
     if (!track || !track.mimetype.includes('audio')) return res.status(400).send({ error: "Invalid track/format" });
@@ -45,41 +47,17 @@ trackRouter.post("/", upload.single('track'), async (req, res) => {
     }
 })
 
-trackRouter.get("/getTracks", async (req, res) => {
-    Track.find({}, (err, data) => {
-        if (!err) {
-            res.send(data)
-        } else {
-            console.log(err)
-        }
-    })
-})
 
-
-trackRouter.post('/create', (req, res) => {
+trackRouter.get("/getAll", async (req, res) => {
     try {
-        console.log(req.body.name)
-        const track = new Track({
-            trackName: req.body.trackName,
-            trackDuration: req.body.trackDuration,
-            album: req.body.album,
-            playCount: req.body.playCount,
-            trackUrl: req.body.trackUrl
-        })
-        track.save((err, data) => {
-            res.status(200).json({
-                code: 200,
-                message: 'Track creation successful',
-                create: data,
-            })
-        })
-
-    } catch (err) {
-        console.error('Could create Track', err)
+        const tracks = await Track.find({}).populate('album');
+        res.json(tracks)
+    }
+    catch (err) {
+        res.sendStatus(400)
+        console.error('Cannot get all tracks', err)
     }
 })
-
-
 
 trackRouter.delete('/delete', (req, res) => {
     try {

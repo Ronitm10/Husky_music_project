@@ -6,7 +6,7 @@ const trackSchema = new mongoose.Schema({
     trackDuration: Number,
     album: {
         type: Schema.Types.ObjectId,
-        ref: 'Track'
+        ref: 'Album'
     },
     playCount: Number,
     likeCount: Number,
