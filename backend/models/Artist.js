@@ -13,6 +13,7 @@ const artistSchema = new mongoose.Schema({
    topPlayedTracks: [String],
    // user: User
    user: String
+ 
 });
 
 
