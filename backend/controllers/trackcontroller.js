@@ -47,6 +47,7 @@ trackRouter.post("/create", upload.single('track'), async (req, res) => {
     }
 })
 
+
 trackRouter.get("/getAll", async (req, res) => {
     try {
         const tracks = await Track.find({}).populate('album');
