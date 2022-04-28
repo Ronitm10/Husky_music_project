@@ -14,16 +14,16 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": []
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Test1@test.com\",\r\n    \"password\": \"12343566\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users",
+							"raw": "http://localhost:5000/api/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"api",
 								"users"
@@ -65,7 +65,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"Test5@test.com\",\r\n    \"password\": \"12343566\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"Test1@test.com\",\r\n    \"password\": \"12343566\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -73,12 +73,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth",
+							"raw": "http://localhost:5000/api/auth",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"api",
 								"auth"
@@ -109,19 +109,179 @@
 									"key": "trackName",
 									"value": "Testing.mp3",
 									"type": "text"
+								},
+								{
+									"key": "album",
+									"value": "62699780b1fdc9116edeb7f5",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/tracks",
+							"raw": "http://localhost:4000/api/tracks/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "4000",
 							"path": [
 								"api",
-								"tracks"
+								"tracks",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Albums",
+			"item": [
+				{
+					"name": "Get all albums",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/albums/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"albums",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"artist\": \"6269921645374d039ee4ac37\",\r\n    \"tracks\": [\"6269970e8a63da7c8f084a93\"],\r\n    \"name\": \"Test album\",\r\n    \"albumArt\": \"testurl\",\r\n    \"genre\": \"Test genre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/albums/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"albums",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Album",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/albums/find/62699780b1fdc9116edeb7f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"albums",
+								"find",
+								"62699780b1fdc9116edeb7f5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Artist",
+			"item": [
+				{
+					"name": "Create Artist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test artist\",\r\n    \"bio\": \"Im a cool hypothetical artist\",\r\n    \"user\": \"625d8ff0d6995172e0b51055\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/artists/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"artists",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Artist",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"6269921645374d039ee4ac37\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/artists/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"artists",
+								"find"
 							]
 						}
 					},
