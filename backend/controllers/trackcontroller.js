@@ -76,9 +76,6 @@ trackRouter.delete('/delete', (req, res) => {
     }
 })
 
-
-
-
 trackRouter.put('/update', (req, res) => {
     try {
         const id = req.body.id

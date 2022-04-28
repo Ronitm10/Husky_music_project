@@ -6,7 +6,6 @@ const useToken = () => {
         const userToken = JSON.parse(tokenString);
         return userToken?.id
     }
-
     const [token, setToken] = useState(getToken());
 
     //set token in session storage
