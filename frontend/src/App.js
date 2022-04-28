@@ -10,6 +10,7 @@ import useToken from "./useToken";
 import Album from "./Components/Album";
 import Playlist from "./Components/Playlist";
 
+
 function App() {
   // const { token, setToken } = useToken(); //Calling the custom hook for auth
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/albums/:id" element={<Album />} />
           <Route path="/playlist" element={<Playlist />} />
           <Route path="/playlist/:id" element={<Playlist />} />
+
         </Routes>
       </Router>
     </div>

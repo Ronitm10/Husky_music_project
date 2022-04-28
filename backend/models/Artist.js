@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const artistSchema = new mongoose.Schema({
+
   name: String,
   bio: String,
   albums: [{
@@ -13,6 +14,7 @@ const artistSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
+
 });
 
 

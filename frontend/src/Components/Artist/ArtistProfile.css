@@ -1,0 +1,51 @@
+.imageContainer {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 60px;
+    font-family: Impact, fantasy;
+  }
+  body{
+      background-color: black;
+  }
+  .top-played{
+    font-family: Impact, fantasy;
+    
+  }
+#topSongCard{
+  background-image: linear-gradient(to right,  black,  grey ,  white);
+
+  text-align: left;
+  
+}
+IoCaretForwardCircleSharp{
+  height: 20px;
+  width: 20px;
+}
+
+.playButton{
+  margin-top: 10px;
+}
+.topPlayedTitle{
+  font-size: 40px;
+  font-family: Impact, fantasy;
+  text-align:  center;
+  
+  
+}
+.albumArt{
+ height: 100%;
+ width: 100%;
+}
+.albumArtContainer{
+  height: 80px;
+  width: 80px;
+}
+.formContainer{
+  text-align: center;
+}
