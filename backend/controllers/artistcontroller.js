@@ -1,124 +1,89 @@
 const artistRouter = require('express').Router();
 const Artist = require('../models/Artist');
-var mongoose = require('mongoose'); 
+var mongoose = require('mongoose');
+
 const { response } = require('express');
 var bodyParser = require('body-parser');
 
 const idConvertor = mongoose.Types.ObjectId
 
-//To get all the users
-artistRouter.get("/getAll", async (req, res) => {
-   // const filter= {};
-   
-    Artist.find({}, (err, data) => {
 
-        if(!err){
-          res.send(data);
-          //console.log(data);
-        }
-        else{
-          console.log(err);
-        }
-      });
-   
-  //  const objects = await Artist.find({})
-  //  res.status(200).json(objects)
-    
+artistRouter.get("/getAll", async (req, res) => {
+  try {
+    const artists = Artist.find({});
+    res.json(artists)
+  }
+  catch (error) {
+    console.error("Error fetching artists", error);
+  }
 })
 
-//Get an artist by id
-artistRouter.get("/getById", async (req, res) => {
-    // const filter= {};
-   //  const all= await Artist.find()
-  //  console.log(all, ' hi');
-  console.log(req.body);
-    const id= req.body.id;
-
-    var idObj = idConvertor(id);
-
-    const artist = await Artist.findById(idObj);
-    if(!artist){
-      res.status(401).send({msg:"Artist not found"});
+artistRouter.get("/find", async (req, res) => {
+  try {
+    const id = req.body.id;
+    const idObj = idConvertor(id);
+    const artist = await Artist.findById(idObj).populate('user');
+    if (!artist) {
+      return res.status(401).send({ msg: "Artist not found" });
     }
-    
-    res.status(200).json(artist);
-
-  //  Artist.findById(id, (err, data) => {
- 
-  //        if(!err){
-  //          res.send(data);
-  //       //  res.status(200).json({code:200, message:"Data fetched successfully", data});
-  //          console.log(data);
-  //        }
-  //        else{
-  //          console.log(err);
-  //        }
-  //      });
-    
-   //  const objects = await Artist.find({})
-   //  res.status(200).json(objects)
-     
- })
-
-
-
- 
- 
+    return res.status(200).json(artist);
+  }
+  catch (err) {
+    console.error("error fetching artist");
+  }
+})
 
 //Create Artist
 
-artistRouter.post('/create',(req,res) => {
+artistRouter.post('/create', async (req, res) => {
+  try {
+    console.log(req.body.name);
+    const artist = new Artist({
+      name: req.body.name,
+      bio: req.body.bio,
+      user: idConvertor(req.body.user)
+    });
+    const response = await artist.save();
+    res.json({ message: "Artist creation successful", artist: response })
+  }
+  catch (err) {
+    console.error("Artist creation failed", err);
+  }
 
-console.log(req.body.name);
-  const artist = new Artist({
-    name: req.body.name,
-    bio: req.body.bio,
-
-   album: req.body.album,
-
-   topPlayedTracks: [],
-
-   user: req.body.user
-  });
-  artist.save((err,data) =>{
-    res.status(200).json({ code:200, message: "Artist creation successful", create: data});
-  });
 });
 
 
 //Delete an artist
-artistRouter.delete('/deleteArtist',(req,res) => {
-
-  const id= req.body.id;
+artistRouter.delete('/deleteArtist', (req, res) => {
+  const id = req.body.id;
 
   var idObj = idConvertor(id);
-//console.log(id);
+  //console.log(id);
+  Artist.findByIdAndRemove(id, (err, data) => {
+    if (!err) {
+      res.status(200).json({ code: 200, message: "Artist deleted successfully", delUser: data });
 
-          
-  Artist.findByIdAndRemove(id, (err,data) => {
-      if(!err){
-        res.status(200).json({code:200, message:"Artist deleted successfully", delUser: data});
-  
-      }
-    });
-  
+    }
+  });
 });
 
 
 
 // Update an artist
 
-artistRouter.post('/updateArtist',(req,res) => {
+artistRouter.post('/updateArtist', async (req, res) => {
 
-  const id= req.body.id;
+  const id = req.body.id;
 
-  Artist.findByIdAndUpdate(id, { $set:{
-    name: req.body.name
-  }}, (err,data) => {
-    if(!err){
-      res.status(200).json({code:200, message:"Artist updated successfully", updateUsr: data});
+  Artist.findByIdAndUpdate(id, {
+    $set: {
+      name: req.body.name
+    }
+  }, (err, data) => {
+    if (!err) {
+      res.status(200).json({ code: 200, message: "Artist updated successfully", updateUsr: data });
 
-    }else{
+    } else {
       console.log(err);
     }
   });

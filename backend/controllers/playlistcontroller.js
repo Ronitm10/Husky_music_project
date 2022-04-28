@@ -1,21 +1,7 @@
 const playlistRouter = require('express').Router()
-const Test = require('../models/Test')
+var mongoose = require('mongoose')
 const Playlist = require('../models/Playlist')
-const cloudinary = require('cloudinary').v2
-const auth = require('../middleware/auth')
-const multer = require('multer')
-var path = require('path')
-
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/')
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
-    },
-})
-const upload = multer({ storage: storage })
-const fs = require('fs')
+const idConvertor = mongoose.Types.ObjectId
 
 // Create Playlist Name
 playlistRouter.post('/createPlaylist', (req, res) => {
@@ -23,7 +9,7 @@ playlistRouter.post('/createPlaylist', (req, res) => {
         console.log(req.body.name)
         const playlist = new Playlist({
             name: req.body.name,
-            // trackList: [],
+            tracks: req.body.tracks.map((a) => idConvertor(a)),
             user: req.body.user,
         })
         playlist.save((err, data) => {
@@ -35,6 +21,30 @@ playlistRouter.post('/createPlaylist', (req, res) => {
         })
     } catch (err) {
         console.error('Could create Playlist', err)
+    }
+})
+
+//Get all playlist
+playlistRouter.get('/getAll', async (req, res) => {
+    try {
+        const playlists = await Playlist.find({}).populate('tracks')
+        res.json(playlists)
+    } catch (err) {
+        console.error('Error fetching playlists: ', err)
+    }
+})
+
+// Find by id
+playlistRouter.get('/find/:id', async (req, res) => {
+    try {
+        console.log('Playlist id is', req.params.id)
+        const playlist = await Playlist.findById(
+            idConvertor(req.params.id)
+        ).populate('tracks')
+        res.json(playlist)
+    } catch (err) {
+        res.send(400)
+        console.error('Error getting playlist by ID: ', err)
     }
 })
 
@@ -54,6 +64,33 @@ playlistRouter.delete('/delete', (req, res) => {
         })
     } catch (err) {
         console.error('Could not delete Playlist', err)
+    }
+})
+
+// Update a playlist
+playlistRouter.put('/updatePlaylist', (req, res) => {
+    try {
+        const id = req.body.id
+
+        Playlist.findByIdAndUpdate(
+            id,
+            {
+                $set: {
+                    name: req.body.name,
+                },
+            },
+            (err, data) => {
+                if (!err) {
+                    res.status(200).json({
+                        code: 200,
+                        message: 'Playlist updated successfully',
+                        updateUsr: data,
+                    })
+                }
+            }
+        )
+    } catch (err) {
+        console.log('Could not update Playlist', err)
     }
 })
 
