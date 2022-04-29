@@ -8,7 +8,7 @@ const User = require('../models/User')
 userRouter.post(
     '/',
     [
-        check('name', 'Name is required').not().isEmpty(),
+        check('firstName', 'Name is required').not().isEmpty(),
         check('email', 'Please include a valid email').isEmail(),
         check(
             'password',
@@ -18,22 +18,23 @@ userRouter.post(
     async (req, res) => {
         const errors = validationResult(req)
 
-        console.log(errors)
         if (!errors.isEmpty()) {
+            console.log(errors)
             return res.status(400).json({ errors: errors.array() })
         }
-        const { name, email, password } = req.body
+        const { firstName, lastName, email, password } = req.body
         try {
             let user = await User.findOne({ email })
 
             if (user) {
-                res.status(400).json({
-                    errors: [{ msg: 'User already exists' }],
+                return res.status(400).json({
+                    error: 'This email is taken!'
                 })
             }
 
             user = new User({
-                name,
+                firstName,
+                lastName,
                 email,
                 password,
             })
@@ -42,9 +43,10 @@ userRouter.post(
             user.password = await bcrypt.hash(password, salt)
 
             await user.save()
-            res.json({ msg: "User successfully created" })
+            return res.json({ msg: "User successfully created" })
 
         } catch (err) {
+            res.status(400).json({ error: err })
             console.error('oh crap user creation failed', err)
         }
     }

@@ -11,6 +11,7 @@ import Album from "./Components/Album";
 import Playlist from "./Components/Playlist";
 import Home from "./Components/Home/Home"
 import Signup from "./Components/Signup/Signup"
+import SignupSuccess from "./Components/Signup/SignupSuccess";
 
 function App() {
   // const { token, setToken } = useToken(); //Calling the custom hook for auth
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signupSuccess" element={<SignupSuccess />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/tracks" element={<Tracks />} />
         <Route path="/albums" element={<Albums />} />

@@ -1,29 +1,79 @@
-import React from 'react'
-import { Container, Form, Button } from 'react-bootstrap'
-
+import React, { useState, useEffect } from 'react'
+import './Signup.css'
+import { Form, Button, Alert } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMusic } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 const Signup = () => {
+  const [username, setUserName] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [password, setPassword] = useState();
+  const [hasError, setHasError] = useState(false);
+  const [errors, setErrors] = useState("");
+  let navigate = useNavigate();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/api/users', {
+      email: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
+    }).then(function (response) {
+      if (response.status === 200) {
+        setHasError(false)
+        console.log("Signup success", response)
+        navigate("/signupSuccess");
+        console.log("Signup success2")
+      }
+
+    }).catch(function (error) {
+      console.log("Error in signingup in", error.response.data);
+      setHasError(true);
+      setErrors(error.response === null ? "Server error" : error.response.data.toString());
+      return null;
+    });
+
+  }
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formFirstName">
-        <Form.Label>First Name</Form.Label>
-        <Form.Control type="text" placeholder="First Name" />
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control type="text" placeholder="Enter Last Name" />
-      </Form.Group>
+    <>
+      <h1 style={{ textAlign: "center", color: "white", padding: "5px" }}>Welcome to Husky Music! <FontAwesomeIcon icon={faMusic} /></h1>
+      <Form className='signup-wrapper' onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formFirstName">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control required type="text" placeholder="First Name" onChange={e => setFirstName(e.target.value)} />
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control type="text" placeholder="Enter Last Name" onChange={e => setLastName(e.target.value)} />
+        </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control required type="email" placeholder="Enter email" onChange={e => setUserName(e.target.value)} />
+          <Form.Text className="text-muted" >
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control required type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        <Button variant="outline-success" type="submit">
+          Signup
+        </Button>
+        {
+          hasError ?
+            <Alert variant='danger'>
+              {errors}
+            </Alert> : <></>
+        }
+      </Form>
+    </>
   );
 }
 
