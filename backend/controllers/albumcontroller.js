@@ -29,6 +29,18 @@ albumRouter.get('/find/:id', async (req, res) => {
     }
 })
 
+albumRouter.get('/findByArtist/:id', async (req, res) => {
+    try {
+        console.log("Album id is", req.params.id);
+        const album = await Album.find({ artist: idConvertor(req.params.id) }).populate('tracks').populate('artist');
+        res.json(album)
+    }
+    catch (err) {
+        res.send(400)
+        console.error("Error getting album by ID: ", err);
+    }
+})
+
 albumRouter.post('/create', async (req, res) => {
     try {
         const album = new Album({

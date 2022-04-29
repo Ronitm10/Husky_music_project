@@ -6,6 +6,7 @@ const auth = require('../middleware/auth');
 const multer = require('multer');
 var path = require('path');
 const mongoose = require('mongoose')
+const fsExtra = require('fs-extra')
 const idConverter = mongoose.Types.ObjectId
 //Uploads will be labelled with their extension here
 var storage = multer.diskStorage({
@@ -16,32 +17,39 @@ var storage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
     }
 })
+
+
 const upload = multer({ storage: storage });
 const fs = require('fs')
 
-trackRouter.post("/create", upload.single('track'), async (req, res) => {
-    console.log('form body', req.body.trackName);
-    const track = req.file;
-    if (!track || !track.mimetype.includes('audio')) return res.status(400).send({ error: "Invalid track/format" });
-
+trackRouter.post("/create", upload.array('tracks'), async (req, res) => {
+    const tracks = req.files;
+    for (let i = 0; i < tracks.length; i++) {
+        if (!tracks[i].mimetype.includes('audio')) {
+            return res.status(400).send({ error: "Not a valid audio format" });
+        }
+    }
     try {
         //Upload to cloudinary
-        let upload_response = await cloudinary.uploader.upload(track.path,
-            { resource_type: "video" });
+        const trackRes = await Promise.all(tracks.map(async (track) => {
+            let upload_response = await cloudinary.uploader.upload(track.path,
+                { resource_type: "video" });
 
-        const trackObj = new Track();
-        trackObj.trackUrl = upload_response.secure_url;
-        trackObj.trackName = req.body.trackName;
-        await trackObj.save();
-
+            const trackObj = new Track();
+            let minutes = Math.floor(upload_response.duration / 60);
+            let seconds = Math.round(upload_response.duration % 60);
+            console.log('time', minutes, seconds)
+            trackObj.trackUrl = upload_response.secure_url;
+            trackObj.trackName = req.body.trackName;
+            trackObj.trackDuration = minutes + ":" + seconds;
+            await trackObj.save();
+            return trackObj;
+        }))
+        res.json(trackRes);
         // Remove files from server
-        fs.unlink(req.file.path, (err) => {
-            if (err) console.error('unlink failed', err);
-            else console.log('upload complete. File deleted');
-        });
-        return res.send(trackObj);
+        fsExtra.emptyDir('./uploads');
+        return;
     }
-
     catch (err) {
         console.error('Track upload failed', err);
     }

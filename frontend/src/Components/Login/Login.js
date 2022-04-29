@@ -12,18 +12,23 @@ const Login = ({ setToken }) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [hasError, setHasError] = useState(false);
-    const [error, setError] = useState("second")
+    const [error, setError] = useState("Invalid credentials")
     const navigate = useNavigate();
 
     const userToken = getToken();
     console.log('token is', userToken);
-    if (userToken && userToken.user.role === 'user') navigate('/albums')
-    if (userToken && userToken.user.role === 'artist') navigate('/tracks')
+    useEffect(() => {
+        if (userToken && userToken.user.role === 'user') {
+            console.log('in user page return to albums')
+            navigate('/albums')
+        }
+        if (userToken && userToken.user.role === 'artist') navigate('/artistDash')
+    }, [navigate, userToken])
     // if(login) navigate to somewhere 
     //Handle submit will handle logging in and calling the settoken in app.js
     const handleSubmit = async e => {
         e.preventDefault();
-        axios.post('http://localhost:5000/api/auth', {
+        axios.post('http://localhost:4000/api/auth', {
             email: username,
             password: password
         }).then(function (response) {

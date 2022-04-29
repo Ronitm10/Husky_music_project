@@ -14,7 +14,7 @@ const LikedTracks = () => {
     const userToken = getToken();
     const likeSong = async (trackId) => {
         console.log('clicked', trackId);
-        const userRes = await axios.get(`http://localhost:5000/api/users/find/${userToken.user.id}`)
+        const userRes = await axios.get(`http://localhost:4000/api/users/find/${userToken.user.id}`)
         const user = userRes.data;
         console.log("track id is", trackId);
         console.log(user.likedTracks)
@@ -30,7 +30,7 @@ const LikedTracks = () => {
             payload.push(trackId);
         }
         console.log(payload)
-        axios.post(`http://localhost:5000/api/users/updateLikes/${userToken.user.id}`,
+        axios.post(`http://localhost:4000/api/users/updateLikes/${userToken.user.id}`,
             {
                 likedTracks: payload
             })
@@ -44,7 +44,7 @@ const LikedTracks = () => {
 
     }
     useEffect(() => {
-        const userRes = axios.get(`http://localhost:5000/api/users/find/${userToken.user.id}`)
+        const userRes = axios.get(`http://localhost:4000/api/users/find/${userToken.user.id}`)
             .then(res => {
                 setLikedTracks(res.data.likedTracks)
                 setUpdate(false)

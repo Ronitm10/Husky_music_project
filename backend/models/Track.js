@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const trackSchema = new mongoose.Schema({
     trackName: String,
-    trackDuration: Number,
+    trackDuration: String,
     album: {
         type: Schema.Types.ObjectId,
         ref: 'Album'

@@ -6,7 +6,8 @@ import { Navigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { getToken } from '../../helpers'
-import './Album.css'
+import './Album.css';
+
 const Album = () => {
     const params = useParams();
     const albumId = params.id;
@@ -17,7 +18,7 @@ const Album = () => {
 
     const likeSong = async (trackId) => {
         console.log('clicked', trackId);
-        const userRes = await axios.get(`http://localhost:5000/api/users/find/${userToken.user.id}`)
+        const userRes = await axios.get(`http://localhost:4000/api/users/find/${userToken.user.id}`)
         const user = userRes.data;
         console.log("track id is", trackId);
         console.log(user.likedTracks)
@@ -33,7 +34,7 @@ const Album = () => {
             payload.push(trackId);
         }
         console.log(payload)
-        axios.post(`http://localhost:5000/api/users/updateLikes/${userToken.user.id}`,
+        axios.post(`http://localhost:4000/api/users/updateLikes/${userToken.user.id}`,
             {
                 likedTracks: payload
             })
@@ -47,9 +48,8 @@ const Album = () => {
     }
 
 
-
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/albums/find/${albumId}`).then(
+        axios.get(`http://localhost:4000/api/albums/find/${albumId}`).then(
             (res) => {
                 console.log(res.data)
                 setAlbum(res.data);

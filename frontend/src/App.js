@@ -14,8 +14,7 @@ import Signup from "./Components/Signup/Signup"
 import SignupSuccess from "./Components/Signup/SignupSuccess";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import LikedTracks from "./Components/LikedTracks/LikedTracks";
-
-
+import ArtistDash from "./Components/ArtistDash/ArtistDash";
 
 
 function App() {
@@ -61,6 +60,12 @@ function App() {
           element={
             <ProtectedRoute>
               <LikedTracks />
+            </ProtectedRoute>
+          } />
+        <Route path="/artistDash"
+          element={
+            <ProtectedRoute>
+              <ArtistDash />
             </ProtectedRoute>
           } />
       </Routes>
