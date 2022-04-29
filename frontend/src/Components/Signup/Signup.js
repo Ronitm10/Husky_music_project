@@ -18,7 +18,7 @@ const Signup = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const role = isArtist ? "artist" : "user";
-    axios.post('http://localhost:5000/api/users', {
+    axios.post('http://localhost:4000/api/users', {
       email: username,
       password: password,
       firstName: firstName,
