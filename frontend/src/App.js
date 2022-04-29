@@ -9,6 +9,9 @@ import NVbar from "./Components/NVbar";
 import useToken from "./useToken";
 import Album from "./Components/Album";
 import Playlist from "./Components/Playlist";
+import AdminHome from "./Components/Admin/AdminHome";
+import Artist from "./Components/Artist/Artist";
+import AllArtist from "./Components/Artist/AllArtist";
 
 
 function App() {
@@ -34,6 +37,9 @@ function App() {
           <Route path="/albums/:id" element={<Album />} />
           <Route path="/playlist" element={<Playlist />} />
           <Route path="/playlist/:id" element={<Playlist />} />
+          <Route path="/adminHome" element={<AdminHome />} />
+          <Route path="/artist/:id" element={<Artist />} />
+          <Route path="/allArtist" element={<AllArtist />} />
 
         </Routes>
       </Router>
