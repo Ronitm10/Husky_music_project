@@ -2,7 +2,9 @@ const userRouter = require('express').Router()
 const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
 const config = require('config')
+const idConvertor = mongoose.Types.ObjectId
 
 const User = require('../models/User')
 userRouter.post(
@@ -50,5 +52,34 @@ userRouter.post(
         }
     }
 )
+
+userRouter.get('/find/:id', async (req, res) => {
+    try {
+        console.log("User id is", req.params.id);
+        const user = await User.findById(idConvertor(req.params.id)).populate('likedTracks');
+        console.log('Got user', user);
+        return res.json(user)
+    }
+    catch (err) {
+        res.send(400)
+        console.error("Error getting User by ID: ", err);
+    }
+})
+
+userRouter.post('/updateLikes/:id', async (req, res) => {
+    try {
+        console.log("body for upodate likes", req.body)
+        const user = await User.findById(idConvertor(req.params.id)).populate('likedTracks');
+        user.likedTracks = req.body.likedTracks;
+        await user.save();
+        console.log('Updated likes backend')
+        return res.json(user)
+    }
+    catch (err) {
+        console.error("Updating likes failed", err);
+        return res.sendStatus(400);
+
+    }
+})
 
 module.exports = userRouter

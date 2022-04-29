@@ -9,8 +9,8 @@ const idConvertor = mongoose.Types.ObjectId
 //try {
 albumRouter.get('/getAll', async (req, res) => {
     try {
-        const albums = await Album.find({}).populate('tracks');
-        res.json(albums);
+        const albums = await Album.find({}).populate('tracks').populate('artist');
+        return res.json(albums);
     }
     catch (err) {
         console.error("Error fetching albums: ", err);
@@ -20,7 +20,7 @@ albumRouter.get('/getAll', async (req, res) => {
 albumRouter.get('/find/:id', async (req, res) => {
     try {
         console.log("Album id is", req.params.id);
-        const album = await Album.findById(idConvertor(req.params.id)).populate('tracks');
+        const album = await Album.findById(idConvertor(req.params.id)).populate('tracks').populate('artist');
         res.json(album)
     }
     catch (err) {

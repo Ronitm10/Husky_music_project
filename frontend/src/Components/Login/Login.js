@@ -4,6 +4,7 @@ import { Container, Form, Button, Alert } from 'react-bootstrap'
 import jwt from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 import useToken from '../../useToken'
+import { getToken } from '../../helpers'
 
 const axios = require('axios')
 
@@ -13,8 +14,8 @@ const Login = ({ setToken }) => {
     const [hasError, setHasError] = useState(false);
     const [error, setError] = useState("second")
     const navigate = useNavigate();
-    const tokenString = sessionStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
+
+    const userToken = getToken();
     console.log('token is', userToken);
     if (userToken && userToken.user.role === 'user') navigate('/albums')
     if (userToken && userToken.user.role === 'artist') navigate('/tracks')
