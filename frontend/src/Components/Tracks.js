@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from 'react-bootstrap'
-import NVbar from './NVbar'
-import { InputGroup, FormControl, Button } from 'react-bootstrap'
-import Player from './Player/Player';
+import { InputGroup, FormControl, Button, Container } from 'react-bootstrap'
 import MusicPlayer from './Player/MusicPlayer';
 
 function Track() {
     const [trackList, setTrackList] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
-
-
-
-
-
 
     useEffect(() => {
         fetch(`http://localhost:4000/api/tracks/getTracks`).then(res => {
@@ -28,7 +21,7 @@ function Track() {
     }, [])
 
     return (
-        <div>
+        <Container>
             <InputGroup className="mb-3" onChange={(event) => { setSearchTerm(event.target.value) }}>
                 <FormControl placeholder="Search Song" />
                 <Button variant="outline-secondary" id="button-addon2"> Search </Button>
@@ -44,7 +37,7 @@ function Track() {
                 </thead>
                 <tbody>
                     {trackList.filter((val) => {
-                        if (searchTerm == '') {
+                        if (searchTerm === '') {
                             return val
                         }
                         else if (val.trackName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
@@ -68,7 +61,7 @@ function Track() {
                 <MusicPlayer />
             </footer>
 
-        </div>
+        </Container>
     )
 }
 
