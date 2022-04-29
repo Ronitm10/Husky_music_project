@@ -23,7 +23,7 @@ const Login = ({ setToken }) => {
     //Handle submit will handle logging in and calling the settoken in app.js
     const handleSubmit = async e => {
         e.preventDefault();
-        axios.post('http://localhost:5000/api/auth', {
+        axios.post('http://localhost:4000/api/auth', {
             email: username,
             password: password
         }).then(function (response) {

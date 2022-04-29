@@ -8,7 +8,7 @@ function Album() {
   const [albumList, setAlbumList] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/albums/getAll`).then(res => {
+    fetch(`http://localhost:4000/api/albums/getAll`).then(res => {
       res.json().then(result => {
         let albums = result;
         setAlbumList(albums)
