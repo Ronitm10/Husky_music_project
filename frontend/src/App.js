@@ -8,7 +8,7 @@ import { Container } from "react-bootstrap";
 import NVbar from "./Components/NVbar";
 import useToken from "./useToken";
 import Album from "./Components/Albums/Album";
-import Playlist from "./Components/Playlist";
+import Playlist from "./Components/Playlists/Playlist";
 import Home from "./Components/Home/Home"
 import Signup from "./Components/Signup/Signup"
 import SignupSuccess from "./Components/Signup/SignupSuccess";
