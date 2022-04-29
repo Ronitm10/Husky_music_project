@@ -18,11 +18,11 @@ artistRouter.get("/getAll", async (req, res) => {
   }
 })
 
-artistRouter.get("/find", async (req, res) => {
+artistRouter.get("/find/:id", async (req, res) => {
   try {
-    const id = req.body.id;
-    const idObj = idConvertor(id);
-    const artist = await Artist.findById(idObj).populate('user');
+    console.log("Artist id is", req.params.id);
+    
+    const artist = await Artist.findById(idConvertor(req.params.id)).populate('Artist');
     if (!artist) {
       return res.status(401).send({ msg: "Artist not found" });
     }

@@ -23,6 +23,7 @@ function App() {
   return (
     <div className="main">
       <NVbar />
+
       <Routes>
         <Route path="/" element={<Login setToken={setToken} token={token} />} />
         <Route path="/signupSuccess" element={<SignupSuccess />} />
@@ -65,6 +66,7 @@ function App() {
           } />
       </Routes>
     </div >
+
   );
 }
 

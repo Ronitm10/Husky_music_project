@@ -1,23 +1,37 @@
-import './ArtistProfile.css';
+import './Artist.css';
 import NVbar from '../NVbar';
+import axios from 'axios';
 import profileImg from "../../assets/Shawn-Mendes.webp";
 import { Card, Table } from "react-bootstrap";
+import { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
 
 import {ReactComponent as PlayButton} from "../../assets/play-button.svg";
 
 //import TrackDisplay(props)
 
+export default function Artist() {
+  const params = useParams();
+  const artistId = params.id;
+  const [artist, setArtist] = useState({});
 
+// Getting the data from backend
+  useEffect(() => {
+    axios.get(`http://localhost:4000/api/artists/find/${artistId}`).then(
+        (res) => {
+            console.log(res.data)
+            setArtist(res.data);
+        }
+    )
+}, [artistId])
 
-
-export default function ArtistProfile() {
     const cardContentArray = [
         { title: "Song 1", text: "Find us on Facebook", link: profileImg},
         { title: "Song 2", text: "Find us on Instagram", link: profileImg },
         {title: "Song 3", text: "Find us on Youtube", link: profileImg},
         {title: "Song 4", text: "Find us on LinkedIn", link: profileImg}
       ];
-      const albumList = [
+    const albumList = [
         { album: "Album 1", releasedin: "2020",albumDuration: "120", link: profileImg},
         { album: "Album 2", releasedin: "2019",albumDuration: "150", link: profileImg },
         {album: "Album 3", releasedin: "2005",albumDuration: "10", link: profileImg},
@@ -26,7 +40,7 @@ export default function ArtistProfile() {
 
  return (
           <div className='main'>
-                        <NVbar />
+                        
                        
                         <div class='imageContainer' style={{width:"100%", height: "300px"}} >
                         
