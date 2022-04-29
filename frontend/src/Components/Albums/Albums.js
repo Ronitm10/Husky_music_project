@@ -31,7 +31,7 @@ function Album() {
               width: '12rem',
               backgroundColor: "black",
               borderStyle: "solid",
-              borderColor: "white",
+              borderColor: "purple",
               borderRadius: "5%"
             }}>
               <Card.Img variant="top" src={husky} />
