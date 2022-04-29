@@ -10,7 +10,7 @@ const SignupSuccess = () => {
             <Link
                 className="btn btn-outline-light btn-lg"
                 role="button"
-                to="/login"
+                to="/"
             >
                 Go To Login
             </Link>

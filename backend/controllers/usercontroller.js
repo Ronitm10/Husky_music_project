@@ -22,21 +22,20 @@ userRouter.post(
             console.log(errors)
             return res.status(400).json({ errors: errors.array() })
         }
-        const { firstName, lastName, email, password } = req.body
+        const { firstName, lastName, email, password, role } = req.body
         try {
             let user = await User.findOne({ email })
-
             if (user) {
                 return res.status(400).json({
                     error: 'This email is taken!'
                 })
             }
-
             user = new User({
                 firstName,
                 lastName,
                 email,
                 password,
+                role
             })
             const salt = await bcrypt.genSalt(10)
 

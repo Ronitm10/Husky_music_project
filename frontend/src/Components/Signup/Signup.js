@@ -12,23 +12,23 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [hasError, setHasError] = useState(false);
   const [errors, setErrors] = useState("");
-  let navigate = useNavigate();
+  const [isArtist, setIsArtist] = useState(false)
+  const navigate = useNavigate();
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const role = isArtist ? "artist" : "user";
     axios.post('http://localhost:5000/api/users', {
       email: username,
       password: password,
       firstName: firstName,
-      lastName: lastName
+      lastName: lastName,
+      role: role
     }).then(function (response) {
       if (response.status === 200) {
         setHasError(false)
-        console.log("Signup success", response)
         navigate("/signupSuccess");
-        console.log("Signup success2")
       }
-
     }).catch(function (error) {
       console.log("Error in signingup in", error.response.data);
       setHasError(true);
@@ -60,9 +60,15 @@ const Signup = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control required type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
+        <Form.Check
+          type="switch"
+          id="custom-switch"
+          label="Artist?"
+          value={isArtist}
+          onChange={(e) => {
+            e.target.checked ? setIsArtist(true) : setIsArtist(false);
+          }}
+        />
         <Button variant="outline-success" type="submit">
           Signup
         </Button>
