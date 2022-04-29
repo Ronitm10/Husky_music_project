@@ -40,7 +40,7 @@ export default function Artist() {
 
  return (
           <div className='main'>
-                        <NVbar />
+                        
                        
                         <div class='imageContainer' style={{width:"100%", height: "300px"}} >
                         
