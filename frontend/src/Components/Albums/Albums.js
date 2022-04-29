@@ -28,7 +28,7 @@ function Album() {
         return (
           <Link to={`/albums/${album._id}`} className="nav-link" key={album.id}>
             <Card key={idx} style={{
-              width: '12rem',
+              width: '14rem',
               backgroundColor: "black",
               borderStyle: "solid",
               borderColor: "purple",
