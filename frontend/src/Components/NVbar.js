@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, Navbar, Container } from 'react-bootstrap'
+import { Nav, Navbar, Container, Button, Form } from 'react-bootstrap'
 import { getToken } from '../helpers';
 import { logout } from '../helpers';
 import husky from '../assets/app-logo.svg.png'
@@ -44,6 +44,9 @@ function NVbar() {
                     <Nav className='me-2'>
                         <Nav.Link onClick={logout} href="/">Logout</Nav.Link>
                     </Nav>
+                    <form action={`http://localhost:4000/api/premium/checkout/${userToken.user.id}`} method="POST">
+                        <button className='btn btn-success' type="submit">Go Premium</button>
+                    </form>
                 </Container>
             </Navbar>
         )
