@@ -4,21 +4,17 @@ const Playlist = require('../models/Playlist')
 const idConvertor = mongoose.Types.ObjectId
 
 // Create Playlist Name
-playlistRouter.post('/createPlaylist', (req, res) => {
+playlistRouter.post('/createPlaylist', async (req, res) => {
     try {
         console.log(req.body.name)
         const playlist = new Playlist({
             name: req.body.name,
-            tracks: req.body.tracks.map((a) => idConvertor(a)),
+            tracks: req.body.tracks,
             user: req.body.user,
         })
-        playlist.save((err, data) => {
-            res.status(200).json({
-                code: 200,
-                message: 'Playlist Creation Successful',
-                create: data,
-            })
-        })
+        const plist = await playlist.save();
+        res.json(plist);
+
     } catch (err) {
         console.error('Could create Playlist', err)
     }
@@ -37,14 +33,23 @@ playlistRouter.get('/getAll', async (req, res) => {
 // Find by id
 playlistRouter.get('/find/:id', async (req, res) => {
     try {
-        console.log('Playlist id is', req.params.id)
-        const playlist = await Playlist.findById(
-            idConvertor(req.params.id)
-        ).populate('tracks')
-        res.json(playlist)
+        const pList = await Playlist.findById(idConvertor(req.params.id)).populate('tracks');
+        res.json(pList);
     } catch (err) {
         res.send(400)
         console.error('Error getting playlist by ID: ', err)
+    }
+})
+// Find by USER ID
+playlistRouter.get('/findByUser/:id', async (req, res) => {
+    try {
+        const pList = await Playlist.find({ user: req.params.id });
+        console.log('fetched playlsits', pList);
+        res.json(pList);
+    } catch (err) {
+        console.error('Error getting playlist by ID: ', err)
+        res.send(400)
+
     }
 })
 

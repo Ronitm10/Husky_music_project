@@ -8,11 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { getToken } from '../../helpers'
 import likedImg from "../../assets/liked-song.jpeg"
+import { HuskyPlayer } from '../HuskyPlayer/HuskyPlayer';
 const LikedTracks = () => {
 
     const [likedTracks, setLikedTracks] = useState([]);
     const [update, setUpdate] = useState(false);
     const userToken = getToken();
+    const [song, setSong] = useState();
     const likeSong = async (trackId) => {
         console.log('clicked', trackId);
         const userRes = await axios.get(`http://localhost:4000/api/users/find/${userToken._id}`)
@@ -77,7 +79,9 @@ const LikedTracks = () => {
                                     <td>{idx + 1}</td>
                                     <td>{track.trackName.split('.')[0]}</td>
                                     <td>3:34</td>
-                                    <td><FontAwesomeIcon icon={faPlayCircle} /></td>
+                                    <td><FontAwesomeIcon
+                                        onClick={() => setSong(track.trackUrl)}
+                                        icon={faPlayCircle} /></td>
                                     <td style={{ textAlign: 'center' }}>
                                         <FontAwesomeIcon
                                             onClick={() => likeSong(track._id)}
@@ -89,6 +93,7 @@ const LikedTracks = () => {
                     }
                 </tbody>
             </Table>
+            <HuskyPlayer src={song} />
         </Container>
     ) : (<h1 style={{ textAlign: 'center', marginTop: '20%' }}>Oops! You have not liked any songs yet! </h1>)
 }

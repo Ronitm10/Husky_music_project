@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { Container, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { HuskyPlayer } from '../HuskyPlayer/HuskyPlayer'
 import {
   faBuildingColumns,
   faThumbsUp,
@@ -15,13 +16,14 @@ const Playlist = () => {
   const params = useParams();
   const playlistId = params.id;
   const [playlist, setPlaylist] = useState({});
+  const [song, setSong] = useState();
   const userToken = getToken();
 
   if (!userToken) <Navigate to="/" />;
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/albums/find/${playlistId}`)
+      .get(`http://localhost:4000/api/playlists/find/${playlistId}`)
       .then((res) => {
         console.log(res.data);
         setPlaylist(res.data);
@@ -45,15 +47,18 @@ const Playlist = () => {
             <tr>
               <td>{idx + 1}</td>
               <td>{track.trackName.split(".")[0]}</td>
-              <td>3:34</td>
+              <td>{track.trackDuration}</td>
               <td>
-                <FontAwesomeIcon icon={faPlayCircle} />
+                <FontAwesomeIcon
+                  onClick={() => setSong(track.trackUrl)}
+                  icon={faPlayCircle} />
               </td>
               <td style={{ textAlign: "center" }}></td>
             </tr>
           );
         })}
       </Table>
+      <HuskyPlayer src={song} />
     </Container>
   ) : (
     <div>No Track Found</div>
