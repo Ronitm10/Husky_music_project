@@ -18,6 +18,7 @@ const Signup = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const role = isArtist ? "artist" : "user";
+<<<<<<< HEAD
     try {
       const user = await axios.post('http://localhost:4000/api/users', {
         email: username,
@@ -35,6 +36,21 @@ const Signup = () => {
       navigate("/signupSuccess");
     }
     catch (error) {
+=======
+    axios.post('http://localhost:4000/api/users', {
+      email: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      role: role
+    }).then(function (response) {
+      if (response.status === 200) {
+        setHasError(false)
+        navigate("/signupSuccess");
+      }
+    }).catch(function (error) {
+      console.log("Error in signingup in", error.response.data);
+>>>>>>> main
       setHasError(true);
       setErrors(error.response === null ? "Server error" : error.response.data.toString());
       return;
@@ -44,7 +60,9 @@ const Signup = () => {
 
   }
   return (
+    <div class="mainCon">
     <>
+   
       <h1 style={{ textAlign: "center", color: "white", padding: "5px" }}>Welcome to Husky Music! <FontAwesomeIcon icon={faMusic} /></h1>
       <Form className='signup-wrapper' onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formFirstName">
@@ -86,6 +104,8 @@ const Signup = () => {
         }
       </Form>
     </>
+
+    </div>
   );
 }
 

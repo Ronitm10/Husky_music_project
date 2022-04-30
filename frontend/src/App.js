@@ -8,13 +8,16 @@ import { Container } from "react-bootstrap";
 import NVbar from "./Components/NVbar";
 import useToken from "./useToken";
 import Album from "./Components/Albums/Album";
-import Playlist from "./Components/Playlist";
+import Playlist from "./Components/Playlists/Playlist";
 import Home from "./Components/Home/Home"
 import Signup from "./Components/Signup/Signup"
 import SignupSuccess from "./Components/Signup/SignupSuccess";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import LikedTracks from "./Components/LikedTracks/LikedTracks";
 import ArtistDash from "./Components/ArtistDash/ArtistDash";
+import AdminHome from "./Components/Admin/AdminHome";
+
+
 
 
 function App() {
@@ -22,6 +25,7 @@ function App() {
   return (
     <div className="main">
       <NVbar />
+
       <Routes>
         <Route path="/" element={<Login setToken={setToken} token={token} />} />
         <Route path="/signupSuccess" element={<SignupSuccess />} />
@@ -68,8 +72,15 @@ function App() {
               <ArtistDash />
             </ProtectedRoute>
           } />
+        <Route path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminHome />
+            </ProtectedRoute>
+          } />
       </Routes>
     </div >
+
   );
 }
 
