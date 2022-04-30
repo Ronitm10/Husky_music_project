@@ -75,7 +75,7 @@ const Album = () => {
                     </Card.ImgOverlay>
                 </Card>
             </div>
-            <Table striped hover variant="dark" >
+            <Table striped hover variant="dark" className="trackTable" >
                 <thead className='tableHead'>
                     <tr>
                         <th>#</th>
