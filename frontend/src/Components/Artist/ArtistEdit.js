@@ -1,4 +1,4 @@
-import './Artist.css';
+import './ArtistProfile.css';
 import NVbar from '../NVbar';
 import profileImg from "../../assets/Shawn-Mendes.webp";
 import { Form, Button } from "react-bootstrap";

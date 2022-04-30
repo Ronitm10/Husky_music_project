@@ -82,32 +82,4 @@ userRouter.post('/updateLikes/:id', async (req, res) => {
     }
 })
 
-userRouter.delete('/delete/:id', (req, res) => {
-    try {
-        const id = req.params.id
-
-        User.findByIdAndRemove(id, (err, data) => {
-            if (!err) {
-                res.status(200).json({
-                    code: 200,
-                    message: 'User deleted successfully',
-                    delUser: data,
-                })
-            }
-        })
-    } catch (err) {
-        console.error('Could not delete Track', err)
-    }
-})
-userRouter.get("/getAll", async (req, res) => {
-    try {
-      const user = User.find({});
-      res.json(user)
-    }
-    catch (error) {
-      console.error("Error fetching artists", error);
-    }
-  })
-
-
 module.exports = userRouter

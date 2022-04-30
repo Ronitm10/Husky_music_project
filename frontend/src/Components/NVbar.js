@@ -2,8 +2,7 @@ import React from 'react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import { getToken } from '../helpers';
 import { logout } from '../helpers';
-import husky from '../assets/app-logo.svg.png'
-//import './nav.css'
+import husky from '../assets/huskybrand.svg'
 function NVbar() {
     const userToken = getToken();
     if (!userToken)
@@ -16,7 +15,7 @@ function NVbar() {
                             src={husky}
                             width="48"
                             height="48"
-                            className="d-inline-block"
+                            className="d-inline-block align-top"
                         />{' '}Husky Music</Navbar.Brand>
                     <Nav className="me-2">
                         <Nav.Link href="/signup">Signup</Nav.Link>
@@ -70,4 +69,5 @@ function NVbar() {
             </Navbar>
         )
 }
+
 export default NVbar

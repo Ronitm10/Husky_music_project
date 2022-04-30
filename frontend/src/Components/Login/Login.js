@@ -5,7 +5,6 @@ import jwt from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 import useToken from '../../useToken'
 import { getToken } from '../../helpers'
-import husky from '../../assets/app-logo.svg.png'
 
 const axios = require('axios')
 
@@ -54,35 +53,18 @@ const Login = ({ setToken }) => {
 
     }
     return (
-        <div class="mainCon">
-       
         <Container className="login">
-           
-           
-            <div className="d-flex flex-row mb-3 justify-content-around">
-                
-        <div className="p-2">
-        <figure>
-        <img class="logo" src={husky}></img>
-    <figcaption class="brand-name"> Husky Music</figcaption>
-</figure> 
-       
-        </div>
-
-        <div className="p-2">
-            <div class="login-panel">
-             <Form className="login-wrapper" onSubmit={handleSubmit}>
-                <h1 style={{padding: "20px"}}>Login</h1>
-                <Form.Group className="mb-3" style={{ width: "300px", marginLeft: "inherit", marginRight: "inherit"}} controlId="formBasicEmail">
-                    <Form.Label style={{padding: "20px", textAlign:"center"}}>Email address</Form.Label>
+            <Form className="login-wrapper" onSubmit={handleSubmit}>
+                <h1>Login</h1>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" onChange={e => setUserName(e.target.value)} />
                 </Form.Group>
-                <Form.Group className="mb-3" style={{ width: "300px", marginLeft: "inherit", marginRight: "inherit"}} controlId="formBasicPassword">
-                    <Form.Label style={{ padding: "20px"}}>Password</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
-                <div  style={{ padding: "40px"}}>
-                <Button class="submit" variant="outline-success" type="submit">
+                <Button variant="primary" type="submit">
                     Submit
                 </Button>
                 {
@@ -91,14 +73,8 @@ const Login = ({ setToken }) => {
                             {error}
                         </Alert> : <></>
                 }
-                </div>
             </Form>
-            </div>
-        </div>
-        </div>
-       
         </Container>
-        </div>
     )
 }
 
