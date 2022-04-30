@@ -65,7 +65,7 @@ const Album = () => {
     return album.tracks ? (
         <Container className='tracksContainer'>
             <div class='imageContainer' style={{ width: "100%", height: "300px" }} >
-                <img src="/static/media/huskybrand.b9030d0611784c83a3ed3b4b779814e2.svg" alt="Logo" style={{ float: "left", width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src={album.albumArtURL} alt="Logo" style={{ float: "left", width: "100%", height: "100%", objectFit: "cover" }} />
                 <Card className="bg-dark text-white">
                     <Card.ImgOverlay className='cardDetails'>
                         <Card.Title><h1>{album.name}</h1></Card.Title>
