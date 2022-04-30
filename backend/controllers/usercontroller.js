@@ -37,7 +37,8 @@ userRouter.post(
                 lastName,
                 email,
                 password,
-                role
+                role,
+                premium: false
             })
             const salt = await bcrypt.genSalt(10)
 
@@ -79,6 +80,19 @@ userRouter.post('/updateLikes/:id', async (req, res) => {
         console.error("Updating likes failed", err);
         return res.sendStatus(400);
 
+    }
+})
+
+userRouter.get('/premium/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        user.premium = true;
+        await user.save();
+        res.sendStatus(200);
+    }
+    catch (err) {
+        console.error('cannot mark premium', err);
+        res.send(400);
     }
 })
 

@@ -15,7 +15,7 @@ const LikedTracks = () => {
     const userToken = getToken();
     const likeSong = async (trackId) => {
         console.log('clicked', trackId);
-        const userRes = await axios.get(`http://localhost:4000/api/users/find/${userToken.user.id}`)
+        const userRes = await axios.get(`http://localhost:4000/api/users/find/${userToken._id}`)
         const user = userRes.data;
         console.log("track id is", trackId);
         console.log(user.likedTracks)
@@ -31,7 +31,7 @@ const LikedTracks = () => {
             payload.push(trackId);
         }
         console.log(payload)
-        axios.post(`http://localhost:4000/api/users/updateLikes/${userToken.user.id}`,
+        axios.post(`http://localhost:4000/api/users/updateLikes/${userToken._id}`,
             {
                 likedTracks: payload
             })
@@ -45,19 +45,18 @@ const LikedTracks = () => {
 
     }
     useEffect(() => {
-        const userRes = axios.get(`http://localhost:4000/api/users/find/${userToken.user.id}`)
+        const userRes = axios.get(`http://localhost:4000/api/users/find/${userToken._id}`)
             .then(res => {
                 setLikedTracks(res.data.likedTracks)
                 setUpdate(false)
             })
-    }, [userToken.user.id, update])
+    }, [userToken._id, update])
 
-    if (!userToken) <Navigate to="/" />
     return likedTracks.length > 0 ? (
         <Container>
             <div class='imageContainer' style={{ width: "100%", height: "300px" }} >
                 <img src={likedImg} alt="Logo" style={{ float: "left", width: "100%", height: "100%", objectFit: "cover" }} />
-                
+
             </div>
             <h2 style={{ color: "white", width: "100%" }}>Your Likes</h2>
             <Table striped hover variant="dark" >
@@ -91,7 +90,7 @@ const LikedTracks = () => {
                 </tbody>
             </Table>
         </Container>
-    ) : (<div>No Track found</div>)
+    ) : (<h1 style={{ textAlign: 'center', marginTop: '20%' }}>Oops! You have not liked any songs yet! </h1>)
 }
 
 export default LikedTracks

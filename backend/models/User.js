@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String,
     role: String,
+    premium: Boolean,
     likedTracks: [{
         type: Schema.Types.ObjectId,
         ref: 'Track'

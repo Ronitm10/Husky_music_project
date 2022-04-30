@@ -56,12 +56,7 @@ router.post(
                 });
             }
 
-            const payload = {
-                user: {
-                    id: user.id,
-                    role: user.role
-                },
-            }
+            const payload = user.toObject();
 
             jwt.sign(
                 payload,
@@ -69,6 +64,7 @@ router.post(
                 { expiresIn: 360000 },
                 (err, token) => {
                     if (err) throw err
+                    console.log('Jwt token ready', payload);
                     res.json({ token })
                 }
             )

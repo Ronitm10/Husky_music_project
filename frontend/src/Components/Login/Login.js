@@ -21,12 +21,12 @@ const Login = ({ setToken }) => {
     const userToken = getToken();
     console.log('token is', userToken);
     useEffect(() => {
-        if (userToken && userToken.user.role === 'user') {
+        if (userToken && userToken.role === 'user') {
             console.log('in user page return to albums')
             navigate('/albums')
             return;
         }
-        if (userToken && userToken.user.role === 'artist') {
+        if (userToken && userToken.role === 'artist') {
             navigate('/artistDash')
             return;
         }
@@ -40,7 +40,7 @@ const Login = ({ setToken }) => {
             password: password
         }).then(function (response) {
             const token = jwt(response.data.token);
-            console.log('logged in: ', token.user.role)
+            console.log('logged in: ', token.role)
             setToken(token);
             setHasError(false);
             // if (token.user.role === 'artist') navigate("/artistDash", { replace: true })
