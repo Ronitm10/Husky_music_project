@@ -7,11 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { getToken } from '../../helpers'
 import './Album.css';
+import { HuskyPlayer } from '../HuskyPlayer/HuskyPlayer';
 
 const Album = () => {
     const params = useParams();
     const albumId = params.id;
     const [album, setAlbum] = useState({});
+    const [song, setSong] = useState("")
     const userToken = getToken();
 
     if (!userToken) <Navigate to="/" />
@@ -87,10 +89,13 @@ const Album = () => {
                 </thead>
                 {
                     album.tracks.map((track, idx) => {
+                        console.log('track is', track.trackUrl)
                         return (
                             <tr className='tableRow'>
                                 <td>{idx + 1}</td>
-                                <td><FontAwesomeIcon icon={faPlayCircle} /></td>
+                                <td><FontAwesomeIcon
+                                    onClick={() => setSong(track.trackUrl)}
+                                    icon={faPlayCircle} /></td>
                                 <td>{track.trackName.split('.')[0]}</td>
                                 <td>3:34</td>
                                 <td style={{ textAlign: 'center' }}>
@@ -103,6 +108,7 @@ const Album = () => {
                     })
                 }
             </Table>
+            <HuskyPlayer src={song} />
         </Container>
     ) : (<div>No Track found</div>)
 }
