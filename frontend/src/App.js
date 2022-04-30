@@ -14,6 +14,7 @@ import Signup from "./Components/Signup/Signup"
 import SignupSuccess from "./Components/Signup/SignupSuccess";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import LikedTracks from "./Components/LikedTracks/LikedTracks";
+import AdminHome from "./Components/Admin/AdminHome";
 
 
 
@@ -64,6 +65,7 @@ function App() {
               <LikedTracks />
             </ProtectedRoute>
           } />
+          <Route path="/admin" element={<AdminHome />} />
       </Routes>
     </div >
 
