@@ -10,10 +10,25 @@ import { Link } from 'react-router-dom'
 const [listeners, setListeners] = useState({});
 const[searchTerm, setSearchTerm]= useState('');
 
+//Delete user
+    // useEffect(() => {
+    //     fetch(`http://localhost:4000/api/find/find/${id}`).then(res => {
+    //       res.json().then(result => {
+    //         let listen = result;
+    //         setListeners(listen)
+    //         console.log(listen)
+    //       })
+    //     })
+    //       .catch(err => {
+    //         console.error("Weather fetch failed: ", err);
+    //       })
+    //   }, [])
+
+
 
 //Get all Listers
 useEffect(() => {
-    fetch(`http://localhost:4000/api/artists/getAll`).then(res => {
+    fetch(`http://localhost:4000/api/users/getAll`).then(res => {
       res.json().then(result => {
         let listen = result;
         setListeners(listen)
@@ -65,7 +80,7 @@ useEffect(() => {
                            <tr className='table_row'>
                             <td >123123</td>
                                <td >{listeners.name}</td>
-                               <td><Button  variant="light">Delete</Button> </td>
+                               <td><Button  variant="light" onClick={() => ListenerFact(t.album)}>Delete</Button> </td>
                               
                            </tr>
                            </Link>

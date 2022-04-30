@@ -88,7 +88,7 @@ import { InputGroup, FormControl, Button, Table, Container } from 'react-bootstr
                        return (
                            <Link to={`/artist/${t._id}`} className="nav-link" key={t.id}>
                            <tr className='table_row'>
-                            <td >123123</td>
+                             <td>123123</td>
                                <td >{artist.length}</td>
                                <td>{totalTrackCount}</td>
                               
