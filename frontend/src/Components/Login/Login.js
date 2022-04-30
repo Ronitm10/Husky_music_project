@@ -74,7 +74,7 @@ const Login = ({ setToken }) => {
                 </Form.Group>
                 <div  style={{ padding: "40px"}}>
                 <Button class="submit" variant="outline-success" type="submit">
-                    Submit
+                    Log in
                 </Button>
                 {
                     hasError ?
