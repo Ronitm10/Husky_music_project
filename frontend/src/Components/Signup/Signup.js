@@ -44,7 +44,7 @@ const Signup = () => {
 
   }
   return (
-    <div class="mainCon">
+    <div class="mainCont">
     <>
    
       <h1 style={{ textAlign: "center", color: "white", padding: "5px" }}>Welcome to Husky Music <FontAwesomeIcon icon={faMusic} /></h1>

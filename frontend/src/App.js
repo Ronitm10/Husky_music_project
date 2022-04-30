@@ -17,6 +17,7 @@ import LikedTracks from "./Components/LikedTracks/LikedTracks";
 import ArtistDash from "./Components/ArtistDash/ArtistDash";
 
 
+
 function App() {
   const { token, setToken } = useToken()
   return (
@@ -62,14 +63,18 @@ function App() {
               <LikedTracks />
             </ProtectedRoute>
           } />
+
         <Route path="/artistDash"
           element={
             <ProtectedRoute>
               <ArtistDash />
             </ProtectedRoute>
           } />
+
       </Routes>
+
     </div >
+
   );
 }
 
