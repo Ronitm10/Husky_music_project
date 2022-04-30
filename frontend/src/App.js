@@ -15,6 +15,7 @@ import SignupSuccess from "./Components/Signup/SignupSuccess";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import LikedTracks from "./Components/LikedTracks/LikedTracks";
 import ArtistDash from "./Components/ArtistDash/ArtistDash";
+import AllArtist from "./Components/Artist/AllArtist";
 
 
 
@@ -61,6 +62,12 @@ function App() {
           element={
             <ProtectedRoute>
               <LikedTracks />
+            </ProtectedRoute>
+          } />
+        <Route path="/allArtist"
+          element={
+            <ProtectedRoute>
+              <AllArtist />
             </ProtectedRoute>
           } />
 
