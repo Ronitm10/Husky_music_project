@@ -22,24 +22,19 @@ function LoginHomePage() {
 
                             <h3>Music</h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
-                                officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
-                                rerum, saepe nam aspernatur necessitatibus!
+                            HuskyMusic is a digital music service that gives you access to millions of songs and other content from artists all over the world.
+                            Basic functions such as playing music are totally free to Enjoy.
                             </p>
 
 
                             <h3>Playlists</h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
-                                officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
-                                rerum, saepe nam aspernatur necessitatibus!
+                            Make a playlist for your pet, a road trip, a gym session… Anything!We suggest tracks and artists as you create and edit your playlists.
                             </p>
 
                             <h3>Latest Releases</h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
-                                officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
-                                rerum, saepe nam aspernatur necessitatibus!
+                            Simply head over to your favorite artist and show pages and tap “Follow” in order to have their new releases appear in your What's New feed over time. What's New is rolling out to all users globally on iOS and Android over the coming weeks. Soon, you'll never miss a new release again.
                             </p>
 
                         </div>
@@ -56,26 +51,22 @@ function LoginHomePage() {
                         <div class="col-md-4">
                             <h2>Easy to Use</h2>
 
-                            <h3>Search</h3>
+                            <h2>Search</h2>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
-                                officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
-                                rerum, saepe nam aspernatur necessitatibus!
+                            Husky Music Player helps you to find what you’re looking for with Search, including: Songs, Albums, Artists.
+                            Enter your search term in quotation marks “” to narrow results to exact matches, e.g. “Let’s Dance”.
+                            You can also enter any of these before your search term to narrow the results.
                             </p>
 
 
-                            <h3>Navigate</h3>
+                            <h2>Navigate</h2>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
-                                officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
-                                rerum, saepe nam aspernatur necessitatibus!
+                            With a persistent navigation, it’s more clear to the user to see what section the user are on and where they’d like to go in the website. This would also make the navigation more consistent to use across different platforms. By using a persistent navigation the user will be able to use the website instinctively without thinking about it.
                             </p>
 
-                            <h3>Discover</h3>
+                            <h2>Discover</h2>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, laudantium sint,
-                                officia tempore totam quidem eum natus eveniet quibusdam magni deleniti fugiat. Autem eligendi quaerat
-                                rerum, saepe nam aspernatur necessitatibus!
+                            Husky Music discovery features include personalized playlists such as Discover Weekly and Release Radar, suggestions for songs to add to your existing playlists, and radio stations based on tracks, artists, and albums. These dynamically change based on your listening habits or selected songs.
                             </p>
                         </div>
 
