@@ -7,7 +7,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { getToken } from '../../helpers'
-import likedImg from "../../../assets/liked-song.jpeg"
+import likedImg from "../../assets/liked-song.jpeg"
 const LikedTracks = () => {
 
     const [likedTracks, setLikedTracks] = useState([]);
