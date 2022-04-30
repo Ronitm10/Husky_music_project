@@ -7,6 +7,8 @@ const idConvertor = mongoose.Types.ObjectId
 playlistRouter.post('/createPlaylist', async (req, res) => {
     try {
         console.log(req.body.name)
+        const check = await Playlist.findOne({ name: req.body.name });
+        if (check) return res.status(400).json({ error: "Duplicate playlist name" });
         const playlist = new Playlist({
             name: req.body.name,
             tracks: req.body.tracks,
