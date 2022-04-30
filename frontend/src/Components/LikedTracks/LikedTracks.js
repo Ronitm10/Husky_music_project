@@ -7,6 +7,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { getToken } from '../../helpers'
+import likedImg from "../../../assets/liked-song.jpeg"
 const LikedTracks = () => {
 
     const [likedTracks, setLikedTracks] = useState([]);
@@ -54,6 +55,10 @@ const LikedTracks = () => {
     if (!userToken) <Navigate to="/" />
     return likedTracks.length > 0 ? (
         <Container>
+            <div class='imageContainer' style={{ width: "100%", height: "300px" }} >
+                <img src={likedImg} alt="Logo" style={{ float: "left", width: "100%", height: "100%", objectFit: "cover" }} />
+                
+            </div>
             <h2 style={{ color: "white", width: "100%" }}>Your Likes</h2>
             <Table striped hover variant="dark" >
                 <thead>
