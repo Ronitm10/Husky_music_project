@@ -44,7 +44,7 @@ userRouter.post(
             user.password = await bcrypt.hash(password, salt)
 
             await user.save()
-            return res.json({ msg: "User successfully created" })
+            return res.json(user)
 
         } catch (err) {
             res.status(400).json({ error: err })
@@ -81,33 +81,5 @@ userRouter.post('/updateLikes/:id', async (req, res) => {
 
     }
 })
-
-userRouter.delete('/delete/:id', (req, res) => {
-    try {
-        const id = req.params.id
-
-        User.findByIdAndRemove(id, (err, data) => {
-            if (!err) {
-                res.status(200).json({
-                    code: 200,
-                    message: 'User deleted successfully',
-                    delUser: data,
-                })
-            }
-        })
-    } catch (err) {
-        console.error('Could not delete Track', err)
-    }
-})
-userRouter.get("/getAll", async (req, res) => {
-    try {
-      const user = User.find({});
-      res.json(user)
-    }
-    catch (error) {
-      console.error("Error fetching artists", error);
-    }
-  })
-
 
 module.exports = userRouter

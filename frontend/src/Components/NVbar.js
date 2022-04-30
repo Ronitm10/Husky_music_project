@@ -3,7 +3,6 @@ import { Nav, Navbar, Container } from 'react-bootstrap'
 import { getToken } from '../helpers';
 import { logout } from '../helpers';
 import husky from '../assets/app-logo.svg.png'
-//import './nav.css'
 function NVbar() {
     const userToken = getToken();
     if (!userToken)
@@ -16,7 +15,7 @@ function NVbar() {
                             src={husky}
                             width="48"
                             height="48"
-                            className="d-inline-block"
+                            className="d-inline-block align-top"
                         />{' '}Husky Music</Navbar.Brand>
                     <Nav className="me-2">
                         <Nav.Link href="/signup">Signup</Nav.Link>
@@ -27,17 +26,18 @@ function NVbar() {
     else if (userToken.user.role === 'user')
         return (
             <Navbar bg="dark" variant="dark">
+                <Navbar.Brand style={{ fontFamily: "fantasy", alignContent: "left" }} href="/">
+                    <img
+                        alt=""
+                        src={husky}
+                        width="48"
+                        height="48"
+                        className="d-inline-block align-top"
+                    />{' '}Husky Music</Navbar.Brand>
                 <Container>
-                    <Navbar.Brand style={{ fontFamily: "fantasy" }} href="/">
-                        <img
-                            alt=""
-                            src={husky}
-                            width="48"
-                            height="48"
-                            className="d-inline-block align-top"
-                        />{' '}Husky Music</Navbar.Brand>
-                    <Nav className="me-auto">
+                    <Nav className="m-auto">
                         <Nav.Link href="/albums">Albums</Nav.Link>
+                        <Nav.Link href="/Artists">Artists</Nav.Link>
                         <Nav.Link href="/playlists">PlayList</Nav.Link>
                         <Nav.Link href="/likedTracks">Your Likes</Nav.Link>
                     </Nav>
@@ -47,5 +47,27 @@ function NVbar() {
                 </Container>
             </Navbar>
         )
+    else if (userToken.user.role === 'artist')
+        return (
+            <Navbar bg="dark" variant="dark">
+                <Navbar.Brand style={{ fontFamily: "fantasy", alignContent: "left" }} href="/artistDash">
+                    <img
+                        alt=""
+                        src={husky}
+                        width="48"
+                        height="48"
+                        className="d-inline-block align-top"
+                    />{' '}Husky Music</Navbar.Brand>
+                <Container>
+                    <Nav className="me-1">
+                        <Nav.Link href="/artistDash">My Albums</Nav.Link>
+                    </Nav>
+                    <Nav className='me-2'>
+                        <Nav.Link onClick={logout} href="/">Logout</Nav.Link>
+                    </Nav>
+                </Container>
+            </Navbar>
+        )
 }
+
 export default NVbar

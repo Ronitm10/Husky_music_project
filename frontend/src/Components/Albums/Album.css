@@ -1,3 +1,20 @@
+.album-container{
+    display:flex;
+    flex-wrap: wrap;
+}
+.album-table{
+    color: white;
+    padding:50%;
+}
+
+.title{
+    text-align: center;
+    color: white;
+}
+.text{
+    text-align: left;
+    color: aliceblue;
+}
 .album-container {
     display: flex;
     flex-wrap: wrap;
