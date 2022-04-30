@@ -60,7 +60,7 @@ function NVbar() {
                     }
                     <Nav style={{ padding: "2%" }} className='me-2'>
                         <div style={{ color: 'white', marginRight: "4%" }} >Welcome</div> <i style={{ color: 'white' }}>
-                            {userToken.firstName + "," + userToken.lastName}</i>
+                            {userToken.firstName}</i>
                     </Nav>
                     <Nav className='me-2'>
                         <Nav.Link onClick={logout} href="/">Logout</Nav.Link>
