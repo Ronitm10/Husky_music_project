@@ -1,13 +1,12 @@
 {
   "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "concurrently": "^7.1.0",
-    "react-loading": "^2.0.3"
+    "concurrently": "^7.1.0"
   },
   "name": "husky_music_project",
   "description": "# Run instructions:  - cd into backend - `npm run build:ui` - `npm start` or `npm run dev` for dev mode",
   "version": "1.0.0",
   "main": "index.js",
+  "devDependencies": {},
   "scripts": {
     "server": "npm run dev --prefix backend",
     "client": "npm start --prefix frontend",

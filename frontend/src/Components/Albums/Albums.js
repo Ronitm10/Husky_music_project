@@ -1,25 +1,25 @@
-import "./Album.css";
-import React, { useState, useEffect } from "react";
-import { Card, Button, Container, CardGroup } from "react-bootstrap";
-import husky from "../../assets/huskybrand.svg";
-import { Link } from "react-router-dom";
+import './Album.css'
+import React, { useState, useEffect } from 'react'
+import { Card, Button, Container, CardGroup } from 'react-bootstrap'
+import husky from '../../assets/huskybrand.svg'
+import { Link } from 'react-router-dom'
 function Album() {
-  const [albumList, setAlbumList] = useState([]);
+
+  const [albumList, setAlbumList] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/albums/getAll`)
-      .then((res) => {
-        res.json().then((result) => {
-          let albums = result;
-          setAlbumList(albums);
-          console.log(albums);
-        });
+    fetch(`http://localhost:4000/api/albums/getAll`).then(res => {
+      res.json().then(result => {
+        let albums = result;
+        setAlbumList(albums)
+        console.log(albums)
       })
-      .catch((err) => {
-        setAlbumList([]);
+    })
+      .catch(err => {
+        setAlbumList([])
         console.error("Albums fetch failed: ", err);
-      });
-  }, []);
+      })
+  }, [])
 
   return albumList ? (
     <Container className="album-container">
@@ -52,4 +52,4 @@ function Album() {
   );
 }
 
-export default Album;
+export default Album

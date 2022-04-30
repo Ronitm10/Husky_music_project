@@ -4,9 +4,10 @@ import { Container, Form, Button, Alert } from 'react-bootstrap'
 import jwt from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 import useToken from '../../useToken'
-import { getToken } from '../../helpers'
 import husky from '../../assets/app-logo.svg.png'
 import LoginHomePage from './LoginHomePage'
+import { getToken } from '../../helpers'
+
 
 const axios = require('axios')
 
@@ -14,16 +15,25 @@ const Login = ({ setToken }) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [hasError, setHasError] = useState(false);
-    const [error, setError] = useState("second")
+    const [error, setError] = useState("Invalid credentials")
     const navigate = useNavigate();
 
     const userToken = getToken();
     console.log('token is', userToken);
-    if (userToken && userToken.user.role === 'user') navigate('/albums')
-    if (userToken && userToken.user.role === 'artist') navigate('/tracks')
+    useEffect(() => {
+        if (userToken && userToken.user.role === 'user') {
+            console.log('in user page return to albums')
+            navigate('/albums')
+            return;
+        }
+        if (userToken && userToken.user.role === 'artist') {
+            navigate('/artistDash')
+            return;
+        }
+    }, [navigate, userToken])
     // if(login) navigate to somewhere 
     //Handle submit will handle logging in and calling the settoken in app.js
-    const handleSubmit = async e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         axios.post('http://localhost:4000/api/auth', {
             email: username,
@@ -33,11 +43,11 @@ const Login = ({ setToken }) => {
             console.log('logged in: ', token.user.role)
             setToken(token);
             setHasError(false);
-            if (token.user.role === 'artist') navigate("/artistDash", { replace: true })
-            else {
-                console.log('navigating to albums')
-                navigate("/albums", { replace: true })
-            }
+            // if (token.user.role === 'artist') navigate("/artistDash", { replace: true })
+            // else {
+            //     console.log('navigating to albums')
+            //     navigate("/albums", { replace: true })
+            // }
         }).catch(function (error) {
             console.log("Error logging in", error.response);
             setHasError(true)
