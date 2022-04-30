@@ -19,6 +19,7 @@ import AdminHome from "./Components/Admin/AdminHome";
 
 
 
+
 function App() {
   const { token, setToken } = useToken()
   return (
@@ -66,8 +67,11 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path="/admin" element={<AdminHome />} />
+       
       </Routes>
+
     </div >
+    
 
   );
 }

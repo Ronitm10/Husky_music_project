@@ -12,7 +12,7 @@
     text-align: center;
 }
 
-.mainCon{
+.mainCont{
     background: url('/src/assets/capa.png'),
     url('/src/assets/ruido.png'),
     linear-gradient(50deg,#ff4169,#7c26f8);   

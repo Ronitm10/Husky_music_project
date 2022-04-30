@@ -50,7 +50,7 @@ const Login = ({ setToken }) => {
         <Container className="login">
            
            
-            <div className="d-flex flex-row mb-3 justify-content-around">
+            <div className="d-flex flex-row mb-5 justify-content-around">
                 
         <div className="p-2">
         <figure>

@@ -5,6 +5,7 @@
     color:white;
 }
 .mainCon{
+    display: flex;
     background: url('/src/assets/capa.png'),
     url('/src/assets/ruido.png'),
     linear-gradient(50deg,#ff4169,#7c26f8);   
@@ -23,6 +24,7 @@
    font-size: xx-large;
 }
 .login-panel{
+    
     width:350px;
     height:500px;
     background-color: rgba(0,0,0, 0.65);
@@ -36,6 +38,16 @@
     border-radius: 50px;
 }
 
+.p-2{
+   
+}
 
 
 
+@media only screen and (min-width: 780px) {
+    .login{
+      display: flex;
+      padding: 10px;
+      flex-direction: column;
+    }
+}
