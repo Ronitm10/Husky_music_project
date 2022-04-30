@@ -25,7 +25,7 @@ const ArtistDash = () => {
     })
     useEffect(() => {
         if (token)
-            axios.get(`http://localhost:4000/api/artists/findByUser/${token.user.id}`)
+            axios.get(`http://localhost:4000/api/artists/findByUser/${token._id}`)
                 .then(res => {
                     console.log("artist id is", res.data._id);
                     setArtistId(res.data._id)

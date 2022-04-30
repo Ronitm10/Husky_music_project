@@ -4,7 +4,7 @@ import { Card, Button, Container, CardGroup } from "react-bootstrap";
 import husky from "../../assets/huskybrand.svg";
 import { Link } from "react-router-dom";
 
-function Playlist() {
+function Playlists() {
   const [playlistList, setPlaylistList] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function Playlist() {
       });
   }, []);
 
-  return playlistList ? (
+  return playlistList.length >= 1 ? (
     <Container className="playlist-container">
       <h2 style={{ color: "white", width: "100%" }}>Playlists</h2>
       {playlistList.map((playlist, idx) => {
@@ -53,8 +53,11 @@ function Playlist() {
       })}
     </Container>
   ) : (
-    <div>No playlists found</div>
+    <Container>
+      <div className="message">Looks like you havent created any playlists yet!</div>
+    </Container>
+
   );
 }
 
-export default Playlist;
+export default Playlists;

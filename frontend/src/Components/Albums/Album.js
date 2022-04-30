@@ -20,7 +20,7 @@ const Album = () => {
 
     const likeSong = async (trackId) => {
         console.log('clicked', trackId);
-        const userRes = await axios.get(`http://localhost:4000/api/users/find/${userToken.user.id}`)
+        const userRes = await axios.get(`http://localhost:4000/api/users/find/${userToken._id}`)
         const user = userRes.data;
         console.log("track id is", trackId);
         console.log(user.likedTracks)
@@ -36,7 +36,7 @@ const Album = () => {
             payload.push(trackId);
         }
         console.log(payload)
-        axios.post(`http://localhost:4000/api/users/updateLikes/${userToken.user.id}`,
+        axios.post(`http://localhost:4000/api/users/updateLikes/${userToken._id}`,
             {
                 likedTracks: payload
             })

@@ -1,16 +1,27 @@
 const artistRouter = require('express').Router();
 const Artist = require('../models/Artist');
 var mongoose = require('mongoose');
+const multer = require('multer')
+const cloudinary = require('cloudinary').v2;
+var path = require('path');
 
 const { response } = require('express');
 var bodyParser = require('body-parser');
 
 const idConvertor = mongoose.Types.ObjectId
-
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+  }
+})
+const upload = multer({ storage: storage });
 
 artistRouter.get("/getAll", async (req, res) => {
   try {
-    const artists = Artist.find({});
+    const artists = await Artist.find({}).populate('albums');
     res.json(artists)
   }
   catch (error) {
@@ -49,13 +60,18 @@ artistRouter.get("/findByUser/:id", async (req, res) => {
 })
 //Create Artist
 
-artistRouter.post('/create', async (req, res) => {
+artistRouter.post('/create', upload.single('pic'), async (req, res) => {
   try {
-    console.log(req.body.name);
+    console.log("artist", req.body);
+    const pic = req.file;
+    let upload_response = await cloudinary.uploader.upload(pic.path,
+      { resource_type: "image" });
+    const coverUrl = upload_response.secure_url;
     const artist = new Artist({
       name: req.body.name,
       bio: req.body.bio,
-      user: idConvertor(req.body.user)
+      user: idConvertor(req.body.user),
+      pic: coverUrl
     });
     const response = await artist.save();
     res.json(artist)

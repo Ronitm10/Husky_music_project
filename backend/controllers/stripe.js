@@ -13,7 +13,7 @@ router.post('/checkout/:id', async (req, res) => {
                     product_data: {
                         name: 'Husky Premium',
                     },
-                    unit_amount: 2000,
+                    unit_amount: 0500,
                 },
                 quantity: 1,
             },
@@ -22,15 +22,17 @@ router.post('/checkout/:id', async (req, res) => {
         success_url: 'http://localhost:3000/paymentSuccess',
         cancel_url: 'https://localhost:3000/paymentFailure',
     });
-    // if (session.url.contains('Success')) {
-    //     try {
-    //         const artists = User.findById(id);
-    //         res.json(artists)
-    //     }
-    //     catch (error) {
-    //         console.error("Error fetching artists", error);
-    //     }
-    // }
+    console.log('wtf is', session.url);
+    if (session.url.includes('Success')) {
+        try {
+            const user = User.findById(id);
+            user.premium = true;
+            await user.save();
+        }
+        catch (error) {
+            console.error("Error marking premium", error);
+        }
+    }
 
 
 

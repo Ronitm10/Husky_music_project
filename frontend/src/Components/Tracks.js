@@ -16,7 +16,7 @@ function Track() {
             })
         })
             .catch(err => {
-                console.error("Weather fetch failed: ", err);
+                console.error("Tracks fetch failed: ", err);
             })
     }, [])
 
