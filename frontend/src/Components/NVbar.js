@@ -37,7 +37,7 @@ function NVbar() {
                 <Container>
                     <Nav className="m-auto">
                         <Nav.Link href="/albums">Albums</Nav.Link>
-                        <Nav.Link href="/Artists">Artists</Nav.Link>
+                        <Nav.Link href="/AllArtist">Artists</Nav.Link>
                         <Nav.Link href="/playlists">PlayList</Nav.Link>
                         <Nav.Link href="/likedTracks">Your Likes</Nav.Link>
                     </Nav>
