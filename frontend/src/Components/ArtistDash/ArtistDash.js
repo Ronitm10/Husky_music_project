@@ -112,7 +112,7 @@ const ArtistDash = () => {
     })
     return (
         <>
-            <Button variant="primary" style={{ marginLeft: "20%", textAlign: "center" }} onClick={() => setShow(true)}>
+            <Button variant="primary" style={{ textAlign: "center", marginLeft: "50%", marginTop: "5%" }} onClick={() => setShow(true)}>
                 Add Albums
             </Button>
             <Container className="album-container">
