@@ -1,5 +1,5 @@
 import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
-import { Container, Table } from 'react-bootstrap'
+import { Container, Table, Card } from 'react-bootstrap'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { Navigate, useParams } from "react-router-dom";
@@ -58,28 +58,41 @@ const Album = () => {
             console.error("Error fetching tracks for this album", error);
         })
     }, [albumId])
+
+
     return album.tracks ? (
-        <Container>
-            <h2 style={{ color: "white", width: "100%" }}>{album.name}</h2>
+        <Container className='tracksContainer'>
+            <div class='imageContainer' style={{ width: "100%", height: "300px" }} >
+                <img src="/static/media/huskybrand.b9030d0611784c83a3ed3b4b779814e2.svg" alt="Logo" style={{ float: "left", width: "100%", height: "100%", objectFit: "cover" }} />
+                <Card className="bg-dark text-white">
+                    <Card.ImgOverlay className='cardDetails'>
+                        <Card.Title><h1>{album.name}</h1></Card.Title>
+                        <Card.Text>
+                            “If I had my life to live over again, I would have made a rule to read some poetry and listen to some music at least once every week.” “Music is the universal language of mankind.” “Where words fail, music speaks.”
+                            “Life is like a beautiful melody, only the lyrics are messed up.”
+                        </Card.Text>
+                        <Card.Text>{album.genre}</Card.Text>
+                    </Card.ImgOverlay>
+                </Card>
+            </div>
             <Table striped hover variant="dark" >
-                <thead>
+                <thead className='tableHead'>
                     <tr>
                         <th>#</th>
+                        <th></th>
                         <th>Name</th>
                         <th>Runtime</th>
-                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 {
                     album.tracks.map((track, idx) => {
-                        console.log('trackname is ', track)
                         return (
-                            <tr>
+                            <tr className='tableRow'>
                                 <td>{idx + 1}</td>
+                                <td><FontAwesomeIcon icon={faPlayCircle} /></td>
                                 <td>{track.trackName.split('.')[0]}</td>
                                 <td>3:34</td>
-                                <td><FontAwesomeIcon icon={faPlayCircle} /></td>
                                 <td style={{ textAlign: 'center' }}>
                                     <FontAwesomeIcon
                                         onClick={() => likeSong(track._id)}

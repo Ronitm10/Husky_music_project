@@ -27,25 +27,29 @@ function Album() {
       {albumList.map((album, idx) => {
         return (
           <Link to={`/albums/${album._id}`} className="nav-link" key={album.id}>
-            <Card key={idx} style={{
-              width: '12rem',
-              backgroundColor: "black",
-              borderStyle: "solid",
-              borderColor: "white",
-              borderRadius: "5%"
-            }}>
-              <Card.Img variant="top" src={album.albumArtURL} />
+            <Card
+              key={idx}
+              style={{
+                width: "14rem",
+                backgroundColor: "black",
+                borderStyle: "solid",
+                borderColor: "purple",
+                borderRadius: "5%",
+              }}
+            >
+              <Card.Img variant="top" src={husky} />
               <Card.Body>
-                <Card.Title className='title'>{album.name}</Card.Title>
-                <Card.Text className='text'>by {album.artist.name}</Card.Text>
+                <Card.Title className="title">{album.name}</Card.Title>
+                <Card.Text className="text">by {album.artist.name}</Card.Text>
               </Card.Body>
             </Card>
           </Link>
-        )
-      }
-      )}
+        );
+      })}
     </Container>
-  ) : (<div>No albums found</div>)
+  ) : (
+    <div>No albums found</div>
+  );
 }
 
 export default Album
