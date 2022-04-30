@@ -47,10 +47,12 @@ function Playlists() {
   }
 
   const onSelect = (selectedList, selectedItem) => {
+    console.log('selected items are', selectedList);
     setSeltracks(selectedList);
   }
   const onRemove = (selectedList, removedItem) => {
-    setSeltracks(selectedList)
+    console.log('selected items are', selectedList);
+    setSeltracks(selectedList);
   }
 
   const handleSubmit = async (e) => {
@@ -58,17 +60,20 @@ function Playlists() {
     e.preventDefault();
     setLoading(true);
     try {
+      console.log('selected tracks are', seltracks);
       const res = await axios.post('http://localhost:4000/api/playlists/createPlaylist', {
         name: playListName,
         tracks: seltracks.map(t => t._id),
         user: token._id
       })
       console.log('playlist?', res);
+      setSeltracks([]);
       setLoading(false);
       setShow(false);
       setAdded(added + 1);
     }
     catch (err) {
+      setSeltracks([]);
       setHasError(true);
       setLoading(false);
       setMsg(err.response.data.error);
@@ -92,6 +97,8 @@ function Playlists() {
             {tracks ?
               <Multiselect
                 options={tracks}
+                onSelect={onSelect}
+                onRemove={onRemove}
                 displayValue="trackName" /> : <></>
             }
             <Button variant="outline-success" type="submit">
