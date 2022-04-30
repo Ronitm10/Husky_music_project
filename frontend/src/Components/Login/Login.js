@@ -43,11 +43,7 @@ const Login = ({ setToken }) => {
             console.log('logged in: ', token.role)
             setToken(token);
             setHasError(false);
-            // if (token.user.role === 'artist') navigate("/artistDash", { replace: true })
-            // else {
-            //     console.log('navigating to albums')
-            //     navigate("/albums", { replace: true })
-            // }
+
         }).catch(function (error) {
             console.log("Error logging in", error.response);
             setHasError(true)
@@ -57,7 +53,6 @@ const Login = ({ setToken }) => {
     }
     return (
         <div class="mainCon">
-
 
             <Container className="login">
 

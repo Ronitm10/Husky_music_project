@@ -1,6 +1,6 @@
 import "./Playlist.css";
 import React, { useState, useEffect } from "react";
-import { Card, Button, Container, CardGroup, Modal, Form, Spinner, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Alert, Card, Button, Container, CardGroup, Modal, Form, Spinner, ListGroup, ListGroupItem } from "react-bootstrap";
 import add from "../../assets/add.png";
 import husky from "../../assets/playlist.jpg"
 import { Link } from "react-router-dom";
@@ -16,6 +16,8 @@ function Playlists() {
   const [seltracks, setSeltracks] = useState([]);
   const [playListName, setPlayListName] = useState();
   const [added, setAdded] = useState(0);
+  const [hasError, setHasError] = useState(false);
+  const [msg, setMsg] = useState("");
   const token = getToken();
   useEffect(() => {
     axios.get(`http://localhost:4000/api/tracks/getAll`)
@@ -52,6 +54,7 @@ function Playlists() {
   }
 
   const handleSubmit = async (e) => {
+    setHasError(false);
     e.preventDefault();
     setLoading(true);
     try {
@@ -66,13 +69,13 @@ function Playlists() {
       setAdded(added + 1);
     }
     catch (err) {
-      console.error('Error creating playlist', err)
+      setHasError(true);
       setLoading(false);
+      setMsg(err.response.data.error);
     }
   }
 
   return playlistList?.length >= 1 ? (
-
     <Container className="playlist-container">
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -83,7 +86,7 @@ function Playlists() {
             <Form.Group className="mb-3" controlId="albumName">
               <Form.Label>Playlist Name</Form.Label>
               <Form.Control type="text"
-                placeholder="Enter Paylist name"
+                placeholder="Enter Playlist name"
                 onChange={e => setPlayListName(e.target.value)} required />
             </Form.Group>
             {tracks ?
@@ -103,11 +106,15 @@ function Playlists() {
               }
             </Button>
           </Form>
+          {hasError ? <Alert variant='danger'>
+            {msg}
+          </Alert> : <></>}
         </Modal.Body>
 
       </Modal>
       <Card
         onClick={() => setShow(true)}
+        className="nav-link"
         style={{
           width: "14rem",
           backgroundColor: "black",
@@ -122,7 +129,6 @@ function Playlists() {
           <Card.Title className="title">Add</Card.Title>
         </Card.Body>
       </Card>
-      <h2 style={{ color: "white", width: "100%" }}>Playlists</h2>
       {playlistList.map((playlist, idx) => {
         return (
           <Link
@@ -138,6 +144,7 @@ function Playlists() {
                 borderStyle: "solid",
                 borderColor: "purple",
                 borderRadius: "5%",
+                marginTop: "25%"
               }}
             >
               <Card.Img variant="top" src={husky} />
@@ -185,7 +192,9 @@ function Playlists() {
             </Button>
           </Form>
         </Modal.Body>
-
+        {hasError ? <Alert variant='danger'>
+          {msg}
+        </Alert> : <></>}
       </Modal>
       <Card
         onClick={() => setShow(true)}
