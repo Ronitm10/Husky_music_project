@@ -29,7 +29,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
 app.use('/api/tracks', trackRouter)
 app.use('/api/albums', albumRouter)
-app.use('/api/playlist', playlistRouter)
+app.use('/api/playlists', playlistRouter)
 app.use('/api/artists', artistRouter)
 app.use('/api/premium', stripeRouter);
 
