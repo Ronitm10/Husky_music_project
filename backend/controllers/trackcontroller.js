@@ -34,13 +34,13 @@ trackRouter.post("/create", upload.array('tracks'), async (req, res) => {
         const trackRes = await Promise.all(tracks.map(async (track) => {
             let upload_response = await cloudinary.uploader.upload(track.path,
                 { resource_type: "video" });
-
+            console.log("can i get filename", track)
             const trackObj = new Track();
             let minutes = Math.floor(upload_response.duration / 60);
             let seconds = Math.round(upload_response.duration % 60);
             console.log('time', minutes, seconds)
             trackObj.trackUrl = upload_response.secure_url;
-            trackObj.trackName = req.body.trackName;
+            trackObj.trackName = track.originalname;
             trackObj.trackDuration = minutes + ":" + seconds;
             await trackObj.save();
             return trackObj;

@@ -44,7 +44,7 @@ userRouter.post(
             user.password = await bcrypt.hash(password, salt)
 
             await user.save()
-            return res.json({ msg: "User successfully created" })
+            return res.json(user)
 
         } catch (err) {
             res.status(400).json({ error: err })

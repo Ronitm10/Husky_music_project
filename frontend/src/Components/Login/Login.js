@@ -21,12 +21,16 @@ const Login = ({ setToken }) => {
         if (userToken && userToken.user.role === 'user') {
             console.log('in user page return to albums')
             navigate('/albums')
+            return;
         }
-        if (userToken && userToken.user.role === 'artist') navigate('/artistDash')
+        if (userToken && userToken.user.role === 'artist') {
+            navigate('/artistDash')
+            return;
+        }
     }, [navigate, userToken])
     // if(login) navigate to somewhere 
     //Handle submit will handle logging in and calling the settoken in app.js
-    const handleSubmit = async e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         axios.post('http://localhost:4000/api/auth', {
             email: username,
@@ -36,11 +40,11 @@ const Login = ({ setToken }) => {
             console.log('logged in: ', token.user.role)
             setToken(token);
             setHasError(false);
-            if (token.user.role === 'artist') navigate("/artistDash", { replace: true })
-            else {
-                console.log('navigating to albums')
-                navigate("/albums", { replace: true })
-            }
+            // if (token.user.role === 'artist') navigate("/artistDash", { replace: true })
+            // else {
+            //     console.log('navigating to albums')
+            //     navigate("/albums", { replace: true })
+            // }
         }).catch(function (error) {
             console.log("Error logging in", error.response);
             setHasError(true)

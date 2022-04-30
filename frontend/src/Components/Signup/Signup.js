@@ -18,23 +18,29 @@ const Signup = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const role = isArtist ? "artist" : "user";
-    axios.post('http://localhost:4000/api/users', {
-      email: username,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      role: role
-    }).then(function (response) {
-      if (response.status === 200) {
-        setHasError(false)
-        navigate("/signupSuccess");
-      }
-    }).catch(function (error) {
-      console.log("Error in signingup in", error.response.data);
+    try {
+      const user = await axios.post('http://localhost:4000/api/users', {
+        email: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        role: role
+      })
+      console.log('user created', user.data)
+      const artist = await axios.post('http://localhost:4000/api/artists/create', {
+        name: firstName + " " + lastName,
+        user: user.data._id
+      })
+      console.log('artist created', artist.data)
+      navigate("/signupSuccess");
+    }
+    catch (error) {
       setHasError(true);
       setErrors(error.response === null ? "Server error" : error.response.data.toString());
-      return null;
-    });
+      return;
+    }
+
+
 
   }
   return (

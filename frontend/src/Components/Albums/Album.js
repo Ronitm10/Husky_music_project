@@ -73,6 +73,7 @@ const Album = () => {
                 </thead>
                 {
                     album.tracks.map((track, idx) => {
+                        console.log('trackname is ', track)
                         return (
                             <tr>
                                 <td>{idx + 1}</td>

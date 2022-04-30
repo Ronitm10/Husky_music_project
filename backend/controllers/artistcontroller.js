@@ -32,7 +32,21 @@ artistRouter.get("/find/:id", async (req, res) => {
     console.error("error fetching artist");
   }
 })
-
+artistRouter.get("/findByUser/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log('id im searching for is', id);
+    const idObj = idConvertor(id);
+    const artist = await Artist.findOne({ user: id }).populate('user');
+    if (!artist) {
+      return res.status(401).send({ msg: "Artist not found" });
+    }
+    return res.json(artist);
+  }
+  catch (err) {
+    console.error("error fetching artist");
+  }
+})
 //Create Artist
 
 artistRouter.post('/create', async (req, res) => {
@@ -44,7 +58,7 @@ artistRouter.post('/create', async (req, res) => {
       user: idConvertor(req.body.user)
     });
     const response = await artist.save();
-    res.json({ message: "Artist creation successful", artist: response })
+    res.json(artist)
   }
   catch (err) {
     console.error("Artist creation failed", err);
