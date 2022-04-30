@@ -8,7 +8,7 @@
     background: url('/src/assets/capa.png'),
     url('/src/assets/ruido.png'),
     linear-gradient(50deg,#ff4169,#7c26f8);   
-  /* background-attachment: fixed; */
+   background-attachment: fixed; 
   
 
 }
@@ -36,15 +36,6 @@
     border-radius: 50px;
 }
 
-@media screen and (max-width: 767px){
-    .h1{
-        font-size: 50px;
-    }
 
-    .bnt-custom{
-
-        margin: 10px 15px;
-    }
-}
 
 

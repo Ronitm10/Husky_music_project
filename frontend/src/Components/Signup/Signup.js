@@ -43,16 +43,16 @@ const Signup = () => {
    
       <h1 style={{ textAlign: "center", color: "white", padding: "5px" }}>Welcome to Husky Music! <FontAwesomeIcon icon={faMusic} /></h1>
       <Form className='signup-wrapper' onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formFirstName">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control required type="text" placeholder="First Name" onChange={e => setFirstName(e.target.value)} />
+        <Form.Group className="mb-3" style={{textAlign:"center"}} controlId="formFirstName">
+          <Form.Label >First Name</Form.Label>
+          <Form.Control style={{textAlign:"center"}} required type="text" placeholder="First Name" onChange={e => setFirstName(e.target.value)} />
           <Form.Label>Last Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Last Name" onChange={e => setLastName(e.target.value)} />
+          <Form.Control style={{textAlign:"center"}} type="text" placeholder="Enter Last Name" onChange={e => setLastName(e.target.value)} />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group style={{textAlign:"center"}} className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control required type="email" placeholder="Enter email" onChange={e => setUserName(e.target.value)} />
+          <Form.Control style={{textAlign:"center"}} required type="email" placeholder="Enter email" onChange={e => setUserName(e.target.value)} />
           <Form.Text className="text-muted" >
             We'll never share your email with anyone else.
           </Form.Text>
