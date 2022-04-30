@@ -2,7 +2,7 @@ import React from 'react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import { getToken } from '../helpers';
 import { logout } from '../helpers';
-import husky from '../assets/huskybrand.svg'
+import husky from '../assets/app-logo.svg.png'
 function NVbar() {
     const userToken = getToken();
     if (!userToken)
