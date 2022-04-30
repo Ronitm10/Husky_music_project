@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, Button, Container, CardGroup } from 'react-bootstrap'
 import husky from '../../assets/huskybrand.svg'
 import { Link } from 'react-router-dom'
+
 function Album() {
 
   const [albumList, setAlbumList] = useState([])
@@ -46,6 +47,7 @@ function Album() {
           </Link>
         );
       })}
+
     </Container>
   ) : (
     <div>No albums found</div>

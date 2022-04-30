@@ -15,6 +15,7 @@
     "react": "^18.0.0",
     "react-bootstrap": "^2.2.3",
     "react-dom": "^18.0.0",
+    "react-h5-audio-player": "^3.8.4",
     "react-icons": "^4.3.1",
     "react-modal": "^3.15.1",
     "react-overlays": "^5.1.1",

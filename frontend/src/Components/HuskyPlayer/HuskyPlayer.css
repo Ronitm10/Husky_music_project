@@ -1,0 +1,37 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    box-shadow: 5px 5px 5px 6px #ccc;
+}
+
+/* // hide video player so the footer does not look bloated */
+.media > video {
+    display: none;
+}
+
+.rhap_container {
+    background-color: rgba(129, 33, 129, 0.375) !important;
+}
+
+.rhap_play-pause-button > svg > path,
+.rhap_forward-button > svg > path,
+.rhap_rewind-button > svg > path,
+.rhap_repeat-button > svg > path,
+.rhap_volume-container > button > svg > path
+ {
+    fill: whitesmoke;
+}
+
+
+.rhap_rewind-button {
+
+}
+
+.rhap_time  {
+    color: white !important;
+}
