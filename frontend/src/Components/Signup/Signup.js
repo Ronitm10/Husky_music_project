@@ -38,7 +38,9 @@ const Signup = () => {
 
   }
   return (
+    <div class="mainCon">
     <>
+   
       <h1 style={{ textAlign: "center", color: "white", padding: "5px" }}>Welcome to Husky Music! <FontAwesomeIcon icon={faMusic} /></h1>
       <Form className='signup-wrapper' onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formFirstName">
@@ -80,6 +82,8 @@ const Signup = () => {
         }
       </Form>
     </>
+
+    </div>
   );
 }
 

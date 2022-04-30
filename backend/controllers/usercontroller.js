@@ -99,7 +99,7 @@ userRouter.delete('/delete/:id', (req, res) => {
         console.error('Could not delete Track', err)
     }
 })
-artistRouter.get("/getAll", async (req, res) => {
+userRouter.get("/getAll", async (req, res) => {
     try {
       const user = User.find({});
       res.json(user)
