@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from 'react-bootstrap'
 import { InputGroup, FormControl, Button, Container } from 'react-bootstrap'
-import MusicPlayer from './Player/MusicPlayer';
 
 function Track() {
     const [trackList, setTrackList] = useState([])
@@ -57,9 +56,6 @@ function Track() {
                     )}
                 </tbody>
             </Table>
-            <footer>
-                <MusicPlayer />
-            </footer>
 
         </Container>
     )
