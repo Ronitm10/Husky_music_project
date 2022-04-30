@@ -37,10 +37,10 @@ function Album() {
                 borderRadius: "5%",
               }}
             >
-              <Card.Img variant="top" src={husky} />
+              <Card.Img variant="top" src={album.albumArtURL} alt={husky} />
               <Card.Body>
                 <Card.Title className="title">{album.name}</Card.Title>
-                <Card.Text className="text">by {album.artist.name}</Card.Text>
+                <Card.Text className="text">{album.genre}</Card.Text>
               </Card.Body>
             </Card>
           </Link>
